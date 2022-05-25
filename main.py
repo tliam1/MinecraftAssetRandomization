@@ -4,8 +4,8 @@ from os.path import isfile, join
 
 
 def grab_files_from_location(directoryname):
-    filesList = [f for f in listdir(directoryname) if isfile(join(directoryname, f))]
-    return filesList
+    fileslist = [f for f in listdir(directoryname) if isfile(join(directoryname, f))]
+    return fileslist
 
 
 mypath = os.path.dirname(os.path.realpath(__file__))
@@ -25,3 +25,5 @@ onlyfiles += grab_files_from_location(mypath + "\\TestFolder")
 print(onlyfiles)
 
 print("Balls3")
+
+print("Balls4")
