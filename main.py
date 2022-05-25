@@ -24,3 +24,6 @@ onlyfiles += grab_files_from_location(mypath + "\\TestFolder")
 
 print(onlyfiles)
 
+print("Balls3")
+
+print("Balls5")
