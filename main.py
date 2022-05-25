@@ -10,8 +10,6 @@ def grab_files_from_location(directoryname):
 
 mypath = os.path.dirname(os.path.realpath(__file__))
 print(mypath)
-print("YO MAMA")
-print("piss")
 onlyfiles = []
 
 # onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
@@ -25,4 +23,3 @@ onlyfiles = []
 onlyfiles += grab_files_from_location(mypath + "\\TestFolder")
 
 print(onlyfiles)
-
