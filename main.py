@@ -2,6 +2,10 @@ import os
 from os import listdir
 from os.path import isfile, join
 
+def grabFilesFromLocation(directoryName):
+    print(directoryName)
+
+
 mypath = os.path.dirname(os.path.realpath(__file__))
 print(mypath)
 onlyfiles = []
@@ -11,6 +15,7 @@ for f in listdir(mypath):
         f = f.split(".")[0]
         onlyfiles.append(f)
 
+#mypath = grabFilesFromLocation()
 print(onlyfiles)
 print("Balls")
 
