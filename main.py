@@ -25,3 +25,5 @@ onlyfiles += grab_files_from_location(mypath + "\\TestFolder")
 print(onlyfiles)
 
 print("balls")
+
+print("balls3d")
