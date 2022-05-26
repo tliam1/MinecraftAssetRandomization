@@ -2,6 +2,7 @@ import os
 from os import listdir
 from os.path import isfile, join
 from RandomizerClass import Randomizer
+import time
 
 
 def grab_files_from_location(directoryname):
@@ -27,6 +28,8 @@ onlyfiles = []
 testFolderRandomizerClass = Randomizer(mypath + "\\TestFolder", grab_files_from_location(mypath + "\\TestFolder"))
 print(testFolderRandomizerClass.files)
 testFolderRandomizerClass.randomize_file_names()  # just testing the class method
+testFolderRandomizerClass.rename_files()  # should randomize file to a temperary file name then to a minecraft file name to avoid duplicate file names
+
 
 # Below just takes testFolderRandomizerClass.files and adds it to a file in randomizer_name_storage,
 # I don't really know how to orgnaize all of this yet really, so it is stil to be determined if I'm just going
