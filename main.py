@@ -25,10 +25,14 @@ onlyfiles = []
 # onlyfiles += grab_files_from_location(mypath + "\\TestFolder")
 # testFolderRandomizerClass is a class that holds all the info &
 # files for a specific folder. Keeps things small and organized
-testFolderRandomizerClass = Randomizer(mypath + "\\TestFolder", grab_files_from_location(mypath + "\\TestFolder"))
-print(testFolderRandomizerClass.files)
-testFolderRandomizerClass.randomize_file_names()  # just testing the class method
-testFolderRandomizerClass.rename_files()  # should randomize file to a temperary file name then to a minecraft file name to avoid duplicate file names
+test_folder_randomizer_class = Randomizer(mypath + "\\TestFolder", grab_files_from_location(mypath + "\\TestFolder"))
+test_folder_randomizer_class.randomize_file_names()  # just testing the class method
+test_folder_randomizer_class.rename_files()  # should randomize file to a temperary file name then to a minecraft file name to avoid duplicate file names
+
+# uncomment to randomize minecraft block files
+# block_texture_randomizer = Randomizer(mypath + "\\assets\\minecraft\\textures\\block", grab_files_from_location(mypath + "\\assets\\minecraft\\textures\\block"))
+# block_texture_randomizer.randomize_file_names()
+# block_texture_randomizer.rename_files()
 
 
 # Below just takes testFolderRandomizerClass.files and adds it to a file in randomizer_name_storage,
@@ -40,5 +44,5 @@ testFolderRandomizerClass.rename_files()  # should randomize file to a temperary
 def store_file_names():
     testfile = open(mypath + "\\randomizer_name_storage" + "\\TestFile.txt", "w")
 
-    for file in testFolderRandomizerClass.files:
+    for file in test_folder_randomizer_class.files:
         testfile.write(file + "\n")
