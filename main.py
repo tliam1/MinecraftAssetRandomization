@@ -2,7 +2,6 @@ import os
 from os import listdir
 from os.path import isfile, join
 from RandomizerClass import Randomizer
-import time
 
 
 def grab_files_from_location(directoryname):

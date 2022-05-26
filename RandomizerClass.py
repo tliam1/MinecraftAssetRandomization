@@ -14,12 +14,12 @@ class Randomizer:
         random.shuffle(self.files)
         # print("Testing function", self.files)
 
+    # works for blocks, but may need a new function for other things (different if statement checks)
     def rename_files(self):  # we need to give a temp name so that we dont create files with the same name
         iterations = 0
         for f in listdir(self.directory):  # first we set the file name to a sample number because we can't have two file names
             if isfile(join(self.directory, f)) and not f.split("y")[0] == "z" and not f.endswith(".mcmeta"):  # check if it is a file and does not have name starting with z before the first y (Not a temp file name)
-                # ignore minecraft MetaFiles
-                # print(f)
+                # ignore minecraft .mcmeta files
                 # okay really bad, but we change have the file order change so adding zzzz's make sure all the new files get pushed back and order never changes
                 # as the files order is alphabetical then #'s 0-9
                 os.rename(self.directory + "\\" + f, self.directory + f"\\zyzzz{iterations}.txt")  # the brackets allow us to use ints in a string (using a + or comma breaks the funtion)
