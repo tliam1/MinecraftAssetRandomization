@@ -1,14 +1,59 @@
 import os
-from os import listdir
-from os.path import isfile, join
-from RandomizerClass import Randomizer
+# from os import *
+# from os.path import *
+# from RandomizerClass import Randomizer
 from Test import Test
 
 
-def grab_files_from_location(directoryname):
-    fileslist = [f for f in listdir(directoryname) if isfile(join(directoryname, f))]
-    print(directoryname)
-    return fileslist
+# startdir is the directory you want to start looking in, ignorelist is a list of files you want to ignore
+
+# while not grab_files_working:
+#     repeatedly_bang_head_against_wall == True
+#     cry()
+
+
+def grab_files(startdir, ignorelist):
+
+    ballslist = []
+
+    for root, directory, files in os.walk(startdir, topdown=True):
+        directory[:] = [d for d in directory if d not in ignorelist]
+        files[:] = [f for f in files if f not in ignorelist]
+        ballslist.append([root, files[:]])
+        print(root)
+        print(files)
+        print("\n" + str(ballslist))
+        print("")
+
+# Old grab_files
+    # filelist = [f for f in listdir(startdir)]
+    # files_and_folders = []
+    # iterations = 0
+    #
+    # for x in filelist:
+    #     if not isfile(startdir + "\\" + x) and x not in ignorelist:
+    #         files_and_folders.append([])
+    #         files_and_folders[iterations].append(path.join(startdir + "\\" + x))
+    #         iterations += 1
+    #
+    # for x in filelist:
+    #     if isfile(startdir + "\\" + x) and x not in ignorelist:
+    #         files_and_folders.append(x)
+    #
+    # print(files_and_folders)
+    # print(iterations)
+    #
+    # for x in files_and_folders:  # Grabs files from inside of the folders that are found
+    #     if iterations == 0:
+    #         break
+    #     for y in listdir(x[0]):
+    #         if y not in ignorelist:
+    #             x.append(y)
+    #     iterations -= 1
+    #
+    # print(files_and_folders)
+    # print(iterations)
+    # return files_and_folders
 
 
 mypath = os.path.dirname(os.path.realpath(__file__))
@@ -27,17 +72,19 @@ onlyfiles = []
 # testFolderRandomizerClass is a class that holds all the info &
 # files for a specific folder. Keeps things small and organized
 
-# test_folder_randomizer_class = Randomizer(mypath + "\\TestFolder", grab_files_from_location(mypath + "\\TestFolder"))
+# test_folder_randomizer_class = Randomizer(mypath + "\\TestFolder", grab_files(mypath + "\\TestFolder"))
 # test_folder_randomizer_class.randomize_file_names()  # just testing the class method
-# test_folder_randomizer_class.rename_files()  # should randomize file to a temperary file name then to a minecraft file name to avoid duplicate file names
+# test_folder_randomizer_class.rename_files()  # should randomize file to a temporary file name then to a minecraft file name to avoid duplicate file names
 
 # uncomment to randomize minecraft block files
 
-# block_texture_randomizer = Randomizer(mypath + "\\assets\\minecraft\\textures\\block", grab_files_from_location(mypath + "\\assets\\minecraft\\textures\\block"))
+# block_texture_randomizer = Randomizer(mypath + "\\assets\\minecraft\\textures\\block", grab_files(mypath + "\\assets\\minecraft\\textures\\block", []))
 # block_texture_randomizer.randomize_file_names()
 # block_texture_randomizer.rename_files()
 
-balls = Test(mypath + "\\TestFolder", Test.grab_files(mypath + "\\TestFolder"))
+entity_texture_randomizer = Test(mypath + "\\TestFolder",grab_files(mypath + "\\TestFolder", ["Balls.txt", "Please.txt", "kenos.txt"]))
+print(entity_texture_randomizer.filelist)
+
 
 # Below just takes testFolderRandomizerClass.files and adds it to a file in randomizer_name_storage,
 # I don't really know how to orgnaize all of this yet really, so it is stil to be determined if I'm just going

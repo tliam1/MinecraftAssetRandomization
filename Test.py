@@ -20,37 +20,37 @@ class Test:
     #         if isfile(startdir + "\\" + x):
     #             print(x)
 
-    @staticmethod
-    def grab_files(startdir):
-
-        filelist = [f for f in listdir(startdir)]
-        folders = []
-        iterations = 0
-
-        for x in filelist:
-
-            if not isfile(startdir + "\\" + x):
-                folders.append([])
-                print(folders)
-                folders[iterations].append(path.join(startdir + "\\" + x))
-                iterations += 1
-
-        for x in filelist:
-            if isfile(startdir + "\\" + x):
-                folders.append(x)
-
-        print(folders)
-        print(iterations)
-
-        for x in folders:
-
-            for y in listdir(x[0]):
-
-                x.append(y)
-
-            iterations -= 1
-            if iterations == 0:
-                break
-
-        print(folders)
-        print(iterations)
+    # @staticmethod
+    # def grab_files(startdir):
+    #
+    #     filelist = [f for f in listdir(startdir)]
+    #     folders = []
+    #     iterations = 0
+    #
+    #     for x in filelist:
+    #
+    #         if not isfile(startdir + "\\" + x):
+    #             folders.append([])
+    #             print(folders)
+    #             folders[iterations].append(path.join(startdir + "\\" + x))
+    #             iterations += 1
+    #
+    #     for x in filelist:
+    #         if isfile(startdir + "\\" + x):
+    #             folders.append(x)
+    #
+    #     print(folders)
+    #     print(iterations)
+    #
+    #     for x in folders:
+    #
+    #         for y in listdir(x[0]):
+    #
+    #             x.append(y)
+    #
+    #         iterations -= 1
+    #         if iterations == 0:
+    #             break
+    #
+    #     print(folders)
+    #     print(iterations)
