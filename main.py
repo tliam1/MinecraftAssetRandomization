@@ -15,15 +15,18 @@ from Test import Test
 def grab_files(startdir, ignorelist):
 
     ballslist = []
-
+    allFiles = []
     for root, directory, files in os.walk(startdir, topdown=True):
-        directory[:] = [d for d in directory if d not in ignorelist]
-        files[:] = [f for f in files if f not in ignorelist]
-        ballslist.append([root, files[:]])
-        print(root)
-        print(files)
-        print("\n" + str(ballslist))
-        print("")
+        directory = [d for d in directory if d not in ignorelist]
+        files = [f for f in files if f not in ignorelist]
+        ballslist.append([root, files])
+        # print(root)
+        # print(files[:])
+        # print("\n" + str(ballslist))
+        # print("")
+
+    # print(ballslist)
+    return ballslist
 
 # Old grab_files
     # filelist = [f for f in listdir(startdir)]
@@ -82,8 +85,9 @@ onlyfiles = []
 # block_texture_randomizer.randomize_file_names()
 # block_texture_randomizer.rename_files()
 
-entity_texture_randomizer = Test(mypath + "\\TestFolder",grab_files(mypath + "\\TestFolder", ["Balls.txt", "Please.txt", "kenos.txt"]))
-print(entity_texture_randomizer.filelist)
+entity_texture_randomizer = Test(mypath + "\\TestFolder", grab_files(mypath + "\\TestFolder", ["Balls.txt", "Please.txt", "kenos.txt"]), ["Balls.txt", "Please.txt", "kenos.txt"])
+entity_texture_randomizer.get_all_files()
+entity_texture_randomizer.randomize()
 
 
 # Below just takes testFolderRandomizerClass.files and adds it to a file in randomizer_name_storage,
