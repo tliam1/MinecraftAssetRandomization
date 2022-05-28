@@ -23,6 +23,8 @@ class Test:
                     tempIndex = x[1].index(y)
                     y = self.all_files[random_index]
                     self.randomized_directory_and_files[iterations][1][tempIndex] = y
+                    # self.randomized_directory_and_files[iterations][1] = ['please.txt', 'campfire_fire.png.mcmeta', 'heheheha.txt', 'work.txt']
+                    # self.randomized_directory_and_files[iterations][1][tempIndex] = 'please.txt' (Hypothetical)
                     del self.all_files[random_index]  # deletes item from list
             iterations += 1
 
