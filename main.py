@@ -17,9 +17,9 @@ def grab_files(startdir, ignorelist):
     ballslist = []
     allFiles = []
     for root, directory, files in os.walk(startdir, topdown=True):
-        directory = [d for d in directory if d not in ignorelist]
-        files = [f for f in files if f not in ignorelist]
-        ballslist.append([root, files])
+        directory[:] = [d for d in directory if d not in ignorelist]
+        files[:] = [f for f in files if f not in ignorelist]
+        ballslist.append([root, files[:]])
         # print(root)
         # print(files[:])
         # print("\n" + str(ballslist))
