@@ -85,7 +85,7 @@ onlyfiles = []
 # block_texture_randomizer.randomize_file_names()
 # block_texture_randomizer.rename_files()
 
-entity_texture_randomizer = Test(mypath + "\\TestFolder", grab_files(mypath + "\\TestFolder", ["Balls.txt", "Please.txt", "kenos.txt"]), ["Balls.txt", "Please.txt", "kenos.txt"])
+entity_texture_randomizer = Test(mypath + "\\TestFolder", grab_files(mypath + "\\TestFolder", ["Balls.txt", "Please.txt", "kenos.txt"]), ["Balls.txt", "Please.txt", "kenos.txt"], grab_files(mypath + "\\TestFolder", ["Balls.txt", "Please.txt", "kenos.txt"]))
 entity_texture_randomizer.get_all_files()
 entity_texture_randomizer.randomize()
 
