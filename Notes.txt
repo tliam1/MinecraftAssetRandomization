@@ -1,0 +1,5 @@
+Our plan is to have a temp folder that you move the original file into where it is renamed, then that file is moved into
+a clone of assets with only the folders in it.
+
+Ignored files will not be moved over at all since minecraft automatically uses default textures for missing files in a
+texture pack

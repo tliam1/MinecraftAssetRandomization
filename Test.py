@@ -1,13 +1,14 @@
-from os import *
+# from os import *
 from os.path import *
 import random
 
+
 class Test:
 
-    def __init__(self,  root_location, directory_and_files, ignored_files, directory_and_files_to_Randomize):
+    def __init__(self,  root_location, directory_and_files, ignored_files, directory_and_files_to_randomize):
         self.directory_and_files = directory_and_files
         self.root = root_location
-        self.randomized_directory_and_files = directory_and_files_to_Randomize
+        self.randomized_directory_and_files = directory_and_files_to_randomize
         self.all_files = []
         self.ignored_files = ignored_files
 
@@ -20,11 +21,12 @@ class Test:
                 if isfile(join(x[0], y)):
                     random_index = random.randint(0, len(self.all_files) - 1)  # need the -1 cause we start from 0
                     # print(x[1].index(y))
-                    tempIndex = x[1].index(y)
+                    temp_index = x[1].index(y)
                     y = self.all_files[random_index]
-                    self.randomized_directory_and_files[iterations][1][tempIndex] = y
-                    # self.randomized_directory_and_files[iterations][1] = ['please.txt', 'campfire_fire.png.mcmeta', 'heheheha.txt', 'work.txt']
-                    # self.randomized_directory_and_files[iterations][1][tempIndex] = 'please.txt' (Hypothetical)
+                    self.randomized_directory_and_files[iterations][1][temp_index] = y
+                    # self.randomized_directory_and_files[iterations][1] = \
+                    #     ['please.txt', 'campfire_fire.png.mcmeta', 'heheheha.txt', 'work.txt']
+                    # self.randomized_directory_and_files[iterations][1][temp_index] = 'please.txt' (Hypothetical)
                     del self.all_files[random_index]  # deletes item from list
             iterations += 1
 
@@ -36,52 +38,23 @@ class Test:
             for y in x[1]:
                 self.all_files.append(y)
 
-        # print(self.all_files)
+    def find_file(self, rand_file):
+        for x in self.directory_and_files:
+            directory = x[0]
+            for y in x[1]:
+                if rand_file == y:
+                    return directory
 
+    def rename_files(self):
+        for x in self.randomized_directory_and_files:
+            for y in x[1]:
+                print(y)
 
-    # def check_all_folders(self):
-    #
-    #     while not self.directory.isfile():
-    #         print(self.directory)
-
-    # @staticmethod  # Keep this for the finished product
-    # def grab_files(startdir):
-    #     filelist = ([f for f in listdir(startdir)])
-    #     for x in filelist:
-    #         if isfile(startdir + "\\" + x):
-    #             print(x)
-
-    # @staticmethod
-    # def grab_files(startdir):
-    #
-    #     filelist = [f for f in listdir(startdir)]
-    #     folders = []
-    #     iterations = 0
-    #
-    #     for x in filelist:
-    #
-    #         if not isfile(startdir + "\\" + x):
-    #             folders.append([])
-    #             print(folders)
-    #             folders[iterations].append(path.join(startdir + "\\" + x))
-    #             iterations += 1
-    #
-    #     for x in filelist:
-    #         if isfile(startdir + "\\" + x):
-    #             folders.append(x)
-    #
-    #     print(folders)
-    #     print(iterations)
-    #
-    #     for x in folders:
-    #
-    #         for y in listdir(x[0]):
-    #
-    #             x.append(y)
-    #
-    #         iterations -= 1
-    #         if iterations == 0:
-    #             break
-    #
-    #     print(folders)
-    #     print(iterations)
+    def return_files(self):
+        for x in self.randomized_directory_and_files:
+            # rand_dir = x[0]
+            for y in x[1]:
+                file = y
+                print(file)
+                directory = self.find_file(y)
+                print(directory)

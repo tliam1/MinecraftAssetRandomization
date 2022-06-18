@@ -35,3 +35,5 @@ class Randomizer:
                 os.rename(self.directory + "\\" + f, self.directory + "\\" + self.files[iterations])
                 iterations += 1
 
+        # This just creates a list of the original files and then randomizes
+
