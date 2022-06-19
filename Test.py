@@ -58,15 +58,23 @@ class Test:
     def rename_and_move(self):
         rand_file_list = self.get_rand_file_list()
         iteration = 0
+        mypath = os.path.dirname(os.path.realpath(__file__))
         for x in self.directory_and_files:
             for y in x[1]:
                 file = y
                 directory = x[0]
-                mypath = os.path.dirname(os.path.realpath(__file__))
                 fullpath = (directory + "\\" + file)
                 shutil.copy(fullpath, mypath + "\\Temp")
                 os.rename(mypath + "\\Temp\\" + file, mypath + "\\Temp\\" + rand_file_list[iteration])
                 new_directory = self.find_dir(rand_file_list[iteration])
                 shutil.move(mypath + "\\Temp\\" + rand_file_list[iteration], new_directory)
                 iteration += 1
-                print(iteration)
+                print("Randomized " + str(iteration) + " file(s)")
+        else:
+            print("\nRandomization Finished. Randomization list can be found in log.txt in texture pack folder")
+            logfile = open(mypath + "\\Minecraft Randomized Textures\\log.txt", "a")
+            logfile.write("Randomized List:\n" + str(self.randomized_directory_and_files) + "\n")
+            logfile.write("Unrandomized List:\n" + str(self.directory_and_files))
+
+
+

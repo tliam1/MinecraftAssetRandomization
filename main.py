@@ -78,5 +78,9 @@ startup()
 entity_texture_randomizer.get_all_files()
 entity_texture_randomizer.randomized_list()
 entity_texture_randomizer.rename_and_move()  # Should now be 100% working
+
+# Careful when using below, check to make sure it isn't going to fuck with anything, would recommend
+# turning rename_and_move() off first
+
 # entity_texture_randomizer.get_rand_file_list()  # Used for testing, turn this off when running the whole thing
 # entity_texture_randomizer.get_all_files() # Also used for testing
