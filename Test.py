@@ -54,7 +54,7 @@ class Test:
                 mypath = os.path.dirname(os.path.realpath(__file__))
                 fullpath = (directory + "\\" + file)
                 shutil.move(fullpath, mypath + "\\Temp")
-                # print((os.path.dirname(os.path.realpath(__file__)) + "\\Temp\\" + file))
+                print(mypath + "\\Temp\\" + file)
 
     def return_files(self):
         for x in self.randomized_directory_and_files:
