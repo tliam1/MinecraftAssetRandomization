@@ -47,10 +47,10 @@ class Test:
                     return directory
 
     def rename_files(self):
-        for x in self.randomized_directory_and_files:
+        for x in self.directory_and_files:
             for y in x[1]:
                 file = y
-                directory = self.find_file(file)
+                directory = x[0]
                 fullpath = (directory + "\\" + file)
                 shutil.move(fullpath, (os.path.dirname(os.path.realpath(__file__)) + "\\Temp"))
                 print((os.path.dirname(os.path.realpath(__file__)) + "\\Temp\\" + file))
