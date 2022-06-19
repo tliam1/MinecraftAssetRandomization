@@ -39,12 +39,12 @@ class Test:
             for y in x[1]:
                 self.all_files.append(y)
 
-    def find_file(self, rand_file):
-        for x in self.directory_and_files:
-            directory = x[0]
+    def find_rand_file(self):
+        for x in self.randomized_directory_and_files:
             for y in x[1]:
-                if rand_file == y:
-                    return directory
+                rand_file = y
+                print(rand_file)
+                return rand_file
 
     def rename_files(self):
         for x in self.directory_and_files:
@@ -54,7 +54,7 @@ class Test:
                 mypath = os.path.dirname(os.path.realpath(__file__))
                 fullpath = (directory + "\\" + file)
                 shutil.move(fullpath, mypath + "\\Temp")
-                print(mypath + "\\Temp\\" + file)
+                # print(mypath + "\\Temp\\" + file)
 
     def return_files(self):
         for x in self.randomized_directory_and_files:
@@ -62,5 +62,5 @@ class Test:
             for y in x[1]:
                 file = y
                 print(file)
-                directory = self.find_file(y)
+                directory = self.find_rand_file(y)
                 print(directory)
