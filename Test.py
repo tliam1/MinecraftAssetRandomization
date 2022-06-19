@@ -51,9 +51,10 @@ class Test:
             for y in x[1]:
                 file = y
                 directory = x[0]
+                mypath = os.path.dirname(os.path.realpath(__file__))
                 fullpath = (directory + "\\" + file)
-                shutil.move(fullpath, (os.path.dirname(os.path.realpath(__file__)) + "\\Temp"))
-                print((os.path.dirname(os.path.realpath(__file__)) + "\\Temp\\" + file))
+                shutil.move(fullpath, mypath + "\\Temp")
+                # print((os.path.dirname(os.path.realpath(__file__)) + "\\Temp\\" + file))
 
     def return_files(self):
         for x in self.randomized_directory_and_files:
