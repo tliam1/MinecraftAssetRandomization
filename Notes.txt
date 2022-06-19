@@ -3,3 +3,5 @@ a clone of assets with only the folders in it.
 
 Ignored files will not be moved over at all since minecraft automatically uses default textures for missing files in a
 texture pack
+
+balls

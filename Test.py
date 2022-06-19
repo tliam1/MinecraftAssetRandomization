@@ -1,4 +1,5 @@
-# from os import *
+import os
+import shutil
 from os.path import *
 import random
 
@@ -48,7 +49,11 @@ class Test:
     def rename_files(self):
         for x in self.randomized_directory_and_files:
             for y in x[1]:
-                print(y)
+                file = y
+                directory = self.find_file(file)
+                fullpath = (directory + "\\" + file)
+                shutil.move(fullpath, os.path.dirname(os.path.realpath(__file__) + "\\Temp" ))
+                print(fullpath)
 
     def return_files(self):
         for x in self.randomized_directory_and_files:

@@ -63,5 +63,5 @@ entity_texture_randomizer = Test(
 
 entity_texture_randomizer.get_all_files()
 entity_texture_randomizer.randomize()
-entity_texture_randomizer.return_files()
-# entity_texture_randomizer.rename_files()
+entity_texture_randomizer.rename_files()
+# entity_texture_randomizer.return_files()
