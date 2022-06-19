@@ -52,7 +52,7 @@ class Test:
                 file = y
                 directory = self.find_file(file)
                 fullpath = (directory + "\\" + file)
-                shutil.move(fullpath, os.path.dirname(os.path.realpath(__file__) + "\\Temp" ))
+                shutil.move(fullpath, (os.path.dirname(os.path.realpath(__file__)) + "\\Temp"))
                 print(fullpath)
 
     def return_files(self):
