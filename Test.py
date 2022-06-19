@@ -13,7 +13,7 @@ class Test:
         self.all_files = []
         self.ignored_files = ignored_files
 
-    def randomize(self):
+    def randomized_list(self):
         # note this is randomizing a list that ignored some files so some are missing
         random.shuffle(self.all_files)
         iterations = 0
@@ -53,7 +53,7 @@ class Test:
                 directory = self.find_file(file)
                 fullpath = (directory + "\\" + file)
                 shutil.move(fullpath, (os.path.dirname(os.path.realpath(__file__)) + "\\Temp"))
-                print(fullpath)
+                print((os.path.dirname(os.path.realpath(__file__)) + "\\Temp\\" + file))
 
     def return_files(self):
         for x in self.randomized_directory_and_files:
