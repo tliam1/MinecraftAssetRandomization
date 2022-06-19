@@ -21,6 +21,7 @@ def user(name):
     return f"Welcome {name}"
 
 
+# still need to learn why
 if __name__ == "__main__":
     app.run()
 

@@ -39,6 +39,14 @@ class Test:
             for y in x[1]:
                 self.all_files.append(y)
 
+    def find_dir(self, rand_file):
+        for x in self.directory_and_files:
+            directory = x[0]
+            for y in x[1]:
+                if rand_file == y:
+                    directory = directory.replace("TestFolder", "Minecraft Randomized Textures\\TestFolder")
+                    return directory + "\\" + rand_file
+
     def get_rand_file_list(self):
         rand_file_list = []
         for x in self.randomized_directory_and_files:
@@ -58,16 +66,17 @@ class Test:
                 fullpath = (directory + "\\" + file)
                 shutil.move(fullpath, mypath + "\\Temp")
                 os.rename(mypath + "\\Temp\\" + file, mypath + "\\Temp\\" + rand_file_list[iteration])
+                new_directory = self.find_dir(rand_file_list[iteration])
+                shutil.move(mypath + "\\Temp\\" + rand_file_list[iteration], new_directory)
                 iteration += 1
                 print(iteration)
                 break
             break
 
-    def return_files(self):
+    def return_files(self, file):
         for x in self.randomized_directory_and_files:
-            # rand_dir = x[0]
             for y in x[1]:
                 file = y
                 print(file)
-                # directory = self.find_rand_file(y)
-                # print(directory)
+                directory = self.find_dir(y)
+                print(directory)
