@@ -44,7 +44,7 @@ class Test:
         for x in self.randomized_directory_and_files:
             for y in x[1]:
                 rand_file_list.append(y)
-                print(rand_file_list)
+                # print(rand_file_list)
         return rand_file_list
 
     def rename_files(self):

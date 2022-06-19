@@ -1,4 +1,5 @@
 import os
+import shutil
 # from os import *
 # from os.path import *
 # from RandomizerClass import Randomizer
@@ -6,6 +7,11 @@ from Test import Test
 
 
 # startdir is the directory you want to start looking in, ignorelist is a list of files you want to ignore
+
+mypath = os.path.dirname(os.path.realpath(__file__))
+# print(mypath)
+onlyfiles = []
+
 
 def grab_files(startdir, ignorelist):
 
@@ -24,9 +30,17 @@ def grab_files(startdir, ignorelist):
     return ballslist
 
 
-mypath = os.path.dirname(os.path.realpath(__file__))
-# print(mypath)
-onlyfiles = []
+def startup():
+
+    os.makedirs("Minecraft Randomized Textures")
+
+    def ignore_files(directory, files):
+        return [f for f in files if os.path.isfile(os.path.join(directory, f))]
+
+    shutil.copytree(mypath + "\\TestFolder",
+                    mypath + "\\Minecraft Randomized Textures\\TestFolder",
+                    ignore=ignore_files)
+
 
 # onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
 # for f in listdir(mypath + "\\TestFolder"):
@@ -60,10 +74,10 @@ entity_texture_randomizer = Test(
                                  ["Balls.txt", "Please.txt", "kenos.txt"],
                                  grab_files(mypath + "\\TestFolder", ignored)
                                 )
-
-entity_texture_randomizer.get_all_files()
-entity_texture_randomizer.randomized_list()
-# entity_texture_randomizer.rename_files()
-# entity_texture_randomizer.return_files()
-entity_texture_randomizer.get_rand_file_list()  # Used for testing, turn this off when actually running the whole thing
+startup()
 # entity_texture_randomizer.get_all_files()
+# entity_texture_randomizer.randomized_list()
+# entity_texture_randomizer.rename_files() # Just moves one file to Temp and renames it so far
+# entity_texture_randomizer.return_files() # Unfinished, don't use
+# entity_texture_randomizer.get_rand_file_list()  # Used for testing, turn this off when running the whole thing
+# entity_texture_randomizer.get_all_files() # Also used for testing
