@@ -65,4 +65,5 @@ entity_texture_randomizer.get_all_files()
 entity_texture_randomizer.randomized_list()
 # entity_texture_randomizer.rename_files()
 # entity_texture_randomizer.return_files()
-entity_texture_randomizer.find_rand_file()  # Used for testing, turn this off when actually running the whole thing
+entity_texture_randomizer.get_rand_file_list()  # Used for testing, turn this off when actually running the whole thing
+# entity_texture_randomizer.get_all_files()
