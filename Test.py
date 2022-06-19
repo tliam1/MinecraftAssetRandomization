@@ -55,7 +55,7 @@ class Test:
                 # print(rand_file_list)
         return rand_file_list
 
-    def rename_files(self):
+    def rename_and_move(self):
         rand_file_list = self.get_rand_file_list()
         iteration = 0
         for x in self.directory_and_files:
@@ -64,19 +64,9 @@ class Test:
                 directory = x[0]
                 mypath = os.path.dirname(os.path.realpath(__file__))
                 fullpath = (directory + "\\" + file)
-                shutil.move(fullpath, mypath + "\\Temp")
+                shutil.copy(fullpath, mypath + "\\Temp")
                 os.rename(mypath + "\\Temp\\" + file, mypath + "\\Temp\\" + rand_file_list[iteration])
                 new_directory = self.find_dir(rand_file_list[iteration])
                 shutil.move(mypath + "\\Temp\\" + rand_file_list[iteration], new_directory)
                 iteration += 1
                 print(iteration)
-                break
-            break
-
-    def return_files(self, file):
-        for x in self.randomized_directory_and_files:
-            for y in x[1]:
-                file = y
-                print(file)
-                directory = self.find_dir(y)
-                print(directory)
