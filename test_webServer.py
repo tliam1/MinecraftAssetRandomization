@@ -24,4 +24,3 @@ def admin():  # could be used for button redirections later on
 # still need to learn why
 if __name__ == "__main__":
     app.run(debug=True)
-

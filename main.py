@@ -21,12 +21,7 @@ def grab_files(startdir, ignorelist):
         directory[:] = [d for d in directory if d not in ignorelist]
         files[:] = [f for f in files if f not in ignorelist]
         ballslist.append([root, files[:]])
-        # print(root)
-        # print(files[:])
-        # print("\n" + str(ballslist))
-        # print("")
 
-    # print(ballslist)
     return ballslist
 
 
@@ -41,30 +36,6 @@ def startup():
                     mypath + "\\Minecraft Randomized Textures\\TestFolder",
                     ignore=ignore_files)
 
-
-# onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
-# for f in listdir(mypath + "\\TestFolder"):
-#     if isfile(join(mypath + "\\TestFolder", f)):
-#         f = f.split(".")[0]
-#         onlyfiles.append(f)
-#         print(f)
-
-
-# onlyfiles += grab_files_from_location(mypath + "\\TestFolder")
-# testFolderRandomizerClass is a class that holds all the info &
-# files for a specific folder. Keeps things small and organized
-
-# test_folder_randomizer_class = Randomizer(mypath + "\\TestFolder", grab_files(mypath + "\\TestFolder"))
-# test_folder_randomizer_class.randomize_file_names()  # just testing the class method
-# test_folder_randomizer_class.rename_files()
-# should randomize file to a temporary file name then to a minecraft file name to avoid duplicate file names
-
-# uncomment to randomize minecraft block files
-
-# block_texture_randomizer = Randomizer(mypath + "\\assets\\minecraft\\textures\\block",
-# grab_files(mypath + "\\assets\\minecraft\\textures\\block", []))
-# block_texture_randomizer.randomize_file_names()
-# block_texture_randomizer.rename_files()
 
 ignored = ["Balls.txt", "Please.txt", "kenos.txt"]
 

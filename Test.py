@@ -75,6 +75,3 @@ class Test:
             logfile = open(mypath + "\\Minecraft Randomized Textures\\log.txt", "a")
             logfile.write("Randomized List:\n" + str(self.randomized_directory_and_files) + "\n")
             logfile.write("Unrandomized List:\n" + str(self.directory_and_files))
-
-
-
