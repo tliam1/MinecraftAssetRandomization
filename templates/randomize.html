@@ -5,9 +5,9 @@
 <!-- change # to a function call or something to do randomization -->
 <!-- post = posting info, get = getting info -->
 <!-- # = reload page -->
-<form action="#" method="post">
-    <p>Asset Folder Directory:</p>
-    <p><input type="text" name="asset_dir"></p>
-    <p><input type="submit" value="submit"></p>
-</form>
+<!-- href = the file to save -->
+<!-- download = the downloaded file name -->
+<a href="{{ url_for('static', filename='test.txt') }}" download="Randomized_Assets">Download Randomized Assets</a>
+  <!-- <img src="/images/myw3schoolsimage.jpg" alt="W3Schools" width="104" height="142"> -->
+
 {% endblock %}

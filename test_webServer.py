@@ -17,6 +17,7 @@ def About_Us():
 
 @app.route("/Randomize", methods=["Post", "Get"])
 def Randomize():
+    # randomize before this point or the death of all of us begins
     if request.method == "POST":
         # when pressing submit do something
         temp = request.form["asset_dir"]
@@ -29,9 +30,10 @@ def Randomize():
 
 @app.route("/Successful_Randomization")
 def Randomizer_Success():
+    # move file to new location (I.E. out of project location)
     return f"<h1>Randomization Sucessful! You can now close this page!</h1>\n" \
            f"<p>Base Assets Folder Location: {folderDir}</p>\n" \
-           f"<p>Randomized Assets Folder Location: enter Dir here"
+           f"<p>Randomized Assets Folder Location: enter Dir here\n"
 
 
 # still need to learn why
