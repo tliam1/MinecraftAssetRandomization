@@ -1,15 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Home Page</title>
-     <!--<title> </title> = Why do we need this-->
-</head>
-<body>
-    <h1>Home Page</h1>
+{% extends "base.html" %}
+{% block title %} HomePage {% endblock %}
+{% block content %}
+<h1>Test</h1>
+<h1>Home Page</h1>
     <!--<h1> </h1> = Headers-->
     <p>Hello World! (from HTML!)</p>
     <!--<p> </p> = paragraph start and end-->
-    <!--{{}} = variables passed into template-->
-</body>
-</html>
+    <p>{{content}}</p>
+    {% for i in content %}
+        <p>I Love {{i}}</p>
+    {% endfor %}
+    <!--{} x2 = variables passed into template-->
+    <!--{with 2 percent signs inside (need spaces btw logic)} = writing python in html-->
+{% endblock %}
