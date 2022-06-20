@@ -1,6 +1,6 @@
-from flask import Flask, redirect, url_for, render_template
+from flask import Flask, redirect, url_for, render_template, request
 #  pip install flask to get the stuff for this
-
+folderDir = ""
 app = Flask(__name__)
 
 # displays what will be on the home page
@@ -12,13 +12,26 @@ def Home_Page():
     return render_template("index.html", content=["Dream", "SnapNap", "George Not Found"])
 
 @app.route("/About_Us")
-def admin():  # could be used for button redirections later on
-    return "About Us!"
+def About_Us():
+    return render_template("About_Us.html")
 
-# anything typed after / will be given as the name and displayed on a new page
-# @app.route("/<name>")  # can be passed as a parameter
-# def user(name):
-#     return f"Welcome {name}"
+@app.route("/Randomize", methods=["Post", "Get"])
+def Randomize():
+    if request.method == "POST":
+        # when pressing submit do something
+        temp = request.form["asset_dir"]
+        listOfGlobals = globals()  # only way to assign new values to "Undetermined value" globals
+        listOfGlobals['folderDir'] = temp
+        print(folderDir)
+        return redirect(url_for("Randomizer_Success"))
+    else:
+        return render_template("randomize.html")
+
+@app.route("/Successful_Randomization")
+def Randomizer_Success():
+    return f"<h1>Randomization Sucessful! You can now close this page!</h1>\n" \
+           f"<p>Base Assets Folder Location: {folderDir}</p>\n" \
+           f"<p>Randomized Assets Folder Location: enter Dir here"
 
 
 # still need to learn why
