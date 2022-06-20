@@ -4,4 +4,10 @@ a clone of assets with only the folders in it.
 Ignored files will not be moved over at all since minecraft automatically uses default textures for missing files in a
 texture pack
 
-balls
+Rick-roll everyone who reaches the ending credits heheheha
+
+Change the splash text to say who the randomizer is created by
+
+Make the user drag and drop their own assets folder
+
+Make a separate folder for copying in files (Like the pack.mcmeta, pack.png, end.txt, etc.)

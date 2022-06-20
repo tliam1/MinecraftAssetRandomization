@@ -4,7 +4,7 @@ from os.path import *
 import random
 
 
-class Test:
+class Randomizer:
 
     def __init__(self,  root_location, directory_and_files, ignored_files, directory_and_files_to_randomize):
         self.directory_and_files = directory_and_files
