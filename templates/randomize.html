@@ -4,10 +4,27 @@
 <h1>Randomize</h1>
 <!-- change # to a function call or something to do randomization -->
 <!-- post = posting info, get = getting info -->
-<!-- # = reload page -->
+<!-- # = reload page change to do something else later -->
+<!--<form action="#" method="post">-->
+<!--    <p>Assets Folder Directory:</p>-->
+<!--    <p><input type="text" name="asset_dir"></p>-->
+<!--    <p><input type="submit" value="Okay"></p>-->
+<!--</form>-->
+
+
 <!-- href = the file to save -->
 <!-- download = the downloaded file name -->
-<a href="{{ url_for('static', filename='test.txt') }}" download="Randomized_Assets">Download Randomized Assets</a>
-  <!-- <img src="/images/myw3schoolsimage.jpg" alt="W3Schools" width="104" height="142"> -->
+<!-- <a href="{{ url_for('static', filename='test.txt') }}" download="Randomized_Assets">Download Randomized Assets</a> -->
+<!-- <img src="/images/myw3schoolsimage.jpg" alt="W3Schools" width="104" height="142"> -->
+
+<!-- The <a> tag defines a hyperlink, which is used to link from one page to another.-->
+<div class="list-group">
+  <a href="#" class="list-group-item list-group-item-action">Download v1.19.x</a>
+  <a href="#" class="list-group-item list-group-item-action">Download v1.18.x</a>
+  <a href="#" class="list-group-item list-group-item-action">Download v1.17.x</a>
+  <a href="#" class="list-group-item list-group-item-action">Download v1.16.x</a>
+<!--  <a href="#" class="list-group-item list-group-item-action disabled" tabindex="-1" aria-disabled="true">Vestibulum at eros</a>-->
+</div>
+
 
 {% endblock %}

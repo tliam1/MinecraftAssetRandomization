@@ -1,7 +1,19 @@
 from flask import Flask, redirect, url_for, render_template, request
+from flask_dropzone import Dropzone
+import os
+
+#  pip install Flask-Dropzone
 #  pip install flask to get the stuff for this
 folderDir = ""
 app = Flask(__name__)
+baseDir = os.path.abspath(os.path.dirname(__file__))
+app.config.update(
+    UPLOADED_PATH=os.path.join(baseDir, 'static'),
+    DROPZONE_MAX_FILE_SIZE=2000,  # Mb
+    DROPZONE_TIMEOUT=10 * 60 * 1000
+)
+dropzone = Dropzone(app)
+
 
 # displays what will be on the home page
 # Get = insecure way of getting info
@@ -11,11 +23,13 @@ app = Flask(__name__)
 def Home_Page():
     return render_template("index.html", content=["Dream", "SnapNap", "George Not Found"])
 
+
 @app.route("/About_Us")
 def About_Us():
     return render_template("About_Us.html")
 
-@app.route("/Randomize", methods=["Post", "Get"])
+
+@app.route("/Randomize", methods=["POST", "GET"])
 def Randomize():
     # randomize before this point or the death of all of us begins
     if request.method == "POST":
@@ -27,6 +41,7 @@ def Randomize():
         return redirect(url_for("Randomizer_Success"))
     else:
         return render_template("randomize.html")
+
 
 @app.route("/Successful_Randomization")
 def Randomizer_Success():
