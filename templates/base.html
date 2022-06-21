@@ -30,9 +30,16 @@
         </ul>
       </div>
     </nav>
-    {% block content %}
 
-    {% endblock %}
+        <table style="height: 100px;">
+          <tbody>
+            <tr>
+                    {% block content %}
+                    {% endblock %}
+            </tr>
+          </tbody>
+        </table>
+
  <!-- INHERITANCE BASE HERE, content can/will be used in other HTML -->
  <!-- Files as a base format -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

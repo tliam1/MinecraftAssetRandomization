@@ -21,7 +21,7 @@ dropzone = Dropzone(app)
 # routes this to be the default home page
 @app.route("/")
 def Home_Page():
-    return render_template("index.html", content=["Dream", "SnapNap", "George Not Found"])
+    return render_template("index.html", content=["\n", "\n", "\n", "\n", "\n", "\n", "\n", "\n", "\n", "\n", "\n", "\n", "\n", "\n", "\n", "\n", "\n"])
 
 
 @app.route("/About_Us")
