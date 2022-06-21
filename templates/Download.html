@@ -1,7 +1,11 @@
 {% extends "base.html" %}
-{% block title %} Randomize_Page {% endblock %}
+{% block title %} Randomize_Page
+
+{% endblock %}
 {% block content %}
-<h1>You can now download the .zip file</h1>
+<script> setTimeout(function () { window.location = '{{ url_for('static', filename='test.zip') }}'; }, 2000)</script>
+
+<h1>The .zip file will be provided automatically, please wait a few seconds</h1>
 
 <!-- change # to a function call or something to do randomization -->
 <!-- post = posting info, get = getting info -->
@@ -12,21 +16,20 @@
 <!--    <p><input type="submit" value="Okay"></p>-->
 <!--</form>-->
 
-
 <!-- href = the file to save -->
 <!-- download = the downloaded file name -->
 <!-- <a href="{{ url_for('static', filename='test.txt') }}" download="Randomized_Assets">Download Randomized Assets</a> -->
 <!-- <img src="/img/myw3schoolsimage.jpg" alt="W3Schools" width="104" height="142"> -->
 
 <!-- The <a> tag defines a hyperlink, which is used to link from one page to another.-->
-<div class="list-group">
-<a href="{{ url_for('static', filename='test.txt') }}" download="Randomized_Assets/1.19" class="list-group-item list-group-item-action">(Actual) Download v1.19.x</a>
-<!--  <a href="/Randomize/1.19" class="list-group-item list-group-item-action">(Working test download) Download v1.19.x</a>-->
-<!--  <a href="#" class="list-group-item list-group-item-action">Download v1.18.x</a>-->
-<!--  <a href="#" class="list-group-item list-group-item-action">Download v1.17.x</a>-->
-<!--  <a href="#" class="list-group-item list-group-item-action">Download v1.16.x</a>-->
-<!--  <a href="#" class="list-group-item list-group-item-action disabled" tabindex="-1" aria-disabled="true">Vestibulum at eros</a>-->
-</div>
+<!--<div class="list-group">-->
+<!--<a href="{{ url_for('static', filename='test.txt') }}" download="Randomized_Assets/1.19" class="list-group-item list-group-item-action">If AutoDownload Fails Click Here</a>-->
+<!--&lt;!&ndash;  <a href="/Randomize/1.19" class="list-group-item list-group-item-action">(Working test download) Download v1.19.x</a>&ndash;&gt;-->
+<!--&lt;!&ndash;  <a href="#" class="list-group-item list-group-item-action">Download v1.18.x</a>&ndash;&gt;-->
+<!--&lt;!&ndash;  <a href="#" class="list-group-item list-group-item-action">Download v1.17.x</a>&ndash;&gt;-->
+<!--&lt;!&ndash;  <a href="#" class="list-group-item list-group-item-action">Download v1.16.x</a>&ndash;&gt;-->
+<!--&lt;!&ndash;  <a href="#" class="list-group-item list-group-item-action disabled" tabindex="-1" aria-disabled="true">Vestibulum at eros</a>&ndash;&gt;-->
+<!--</div>-->
 
 
 {% endblock %}

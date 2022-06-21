@@ -1,7 +1,7 @@
 from flask import Flask, redirect, url_for, render_template, request
 from flask_dropzone import Dropzone
 import os
-from main import start_program
+from main import ignored_list, randomize
 #  pip install Flask-Dropzone
 #  pip install flask to get the stuff for this
 folderDir = ""
@@ -40,8 +40,8 @@ def Randomize():
 # background process happening without any refreshing
 @app.route('/Randomize/<Ver_Name>')
 def background_process_randomize(Ver_Name):
-    if Ver_Name == "1.19":
-        start_program()
+    # if Ver_Name == "1.19":
+    #     randomize(str(Ver_Name), ignored_list)
     return render_template("Download.html")
 
 

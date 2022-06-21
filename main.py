@@ -64,4 +64,4 @@ def randomize(mc_ver, ignored):
     texture_randomzier.rename_and_move(mc_ver)
 
 
-randomize("1.19", ignored_list)
+# randomize("1.19", ignored_list)
