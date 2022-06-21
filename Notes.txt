@@ -11,3 +11,6 @@ Change the splash text to say who the randomizer is created by
 Make the user drag and drop their own assets folder
 
 Make a separate folder for copying in files (Like the pack.mcmeta, pack.png, end.txt, etc.)
+
+Instead of having a morbillion assets folders we just make 1 assets folder and just ignore any files from newer
+minecraft versions when randomizing older minecraft versions

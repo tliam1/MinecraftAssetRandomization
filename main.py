@@ -5,7 +5,6 @@ import shutil
 # from RandomizerClass import Randomizer
 from RandomizerScript import Randomizer
 
-
 # startdir is the directory you want to start looking in, ignorelist is a list of files you want to ignore
 
 mypath = os.path.dirname(os.path.realpath(__file__))
@@ -62,10 +61,13 @@ entity_texture_randomizer = Randomizer(
                                  [],
                                  grab_files(mypath + "\\assets", ignored)
                                 )
-startup()
-entity_texture_randomizer.get_all_files()
-entity_texture_randomizer.randomized_list()
-entity_texture_randomizer.rename_and_move()  # Should now be 100% working
+
+
+def start_program():
+    startup()
+    entity_texture_randomizer.get_all_files()
+    entity_texture_randomizer.randomized_list()
+    entity_texture_randomizer.rename_and_move()  # Should now be 100% working
 
 # Careful when using code below, check to make sure it isn't going to fuck with anything, would recommend
 # turning rename_and_move() off first
