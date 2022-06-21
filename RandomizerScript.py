@@ -39,12 +39,12 @@ class Randomizer:
             for y in x[1]:
                 self.all_files.append(y)
 
-    def find_dir(self, rand_file):
+    def find_dir(self, rand_file, mc_ver):
         for x in self.directory_and_files:
             directory = x[0]
             for y in x[1]:
                 if rand_file == y:
-                    directory = directory.replace("assets", "Minecraft Randomized Textures\\assets")
+                    directory = directory.replace("assets", "Minecraft " + mc_ver + " Randomized Textures\\assets")
                     return directory + "\\" + rand_file
 
     def get_rand_file_list(self):
@@ -55,10 +55,12 @@ class Randomizer:
                 # print(rand_file_list)
         return rand_file_list
 
-    def rename_and_move(self):
+    def rename_and_move(self, mc_ver):
         rand_file_list = self.get_rand_file_list()
         iteration = 0
         mypath = os.path.dirname(os.path.realpath(__file__))
+        logfile = open(mypath + "\\Minecraft 1.19 Randomized Textures\\log.txt", "a")
+        logfile.write("Format: (File_name) is (File_image)\n\n")
         for x in self.directory_and_files:
             for y in x[1]:
                 file = y
@@ -66,12 +68,11 @@ class Randomizer:
                 fullpath = (directory + "\\" + file)
                 shutil.copy(fullpath, mypath + "\\Temp")
                 os.rename(mypath + "\\Temp\\" + file, mypath + "\\Temp\\" + rand_file_list[iteration])
-                new_directory = self.find_dir(rand_file_list[iteration])
+                new_directory = self.find_dir(rand_file_list[iteration], mc_ver)
                 shutil.move(mypath + "\\Temp\\" + rand_file_list[iteration], new_directory)
+                logfile.write(rand_file_list[iteration] + " is " + file + "\n")
                 iteration += 1
                 print("Randomized " + str(iteration) + " file(s)")
         else:
             print("\nRandomization Finished. Randomization list can be found in log.txt in texture pack folder")
-            logfile = open(mypath + "\\Minecraft Randomized Textures\\log.txt", "a")
-            logfile.write("Randomized List:\n" + str(self.randomized_directory_and_files) + "\n")
-            logfile.write("Unrandomized List:\n" + str(self.directory_and_files))
+            logfile.close()
