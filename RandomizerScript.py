@@ -44,7 +44,7 @@ class Randomizer:
             directory = x[0]
             for y in x[1]:
                 if rand_file == y:
-                    directory = directory.replace("TestFolder", "Minecraft Randomized Textures\\TestFolder")
+                    directory = directory.replace("assets", "Minecraft Randomized Textures\\assets")
                     return directory + "\\" + rand_file
 
     def get_rand_file_list(self):

@@ -31,21 +31,36 @@ def startup():
     def ignore_files(directory, files):
         return [f for f in files if os.path.isfile(os.path.join(directory, f))]
 
-    shutil.copytree(mypath + "\\TestFolder",
-                    mypath + "\\Minecraft Randomized Textures\\TestFolder",
+    shutil.copytree(mypath + "\\assets",
+                    mypath + "\\Minecraft Randomized Textures\\assets",
                     ignore=ignore_files)
 
-    shutil.copy(mypath + "\\Copyables\\pack.mcmeta", mypath + "\\Minecraft Randomized Textures")
-    shutil.copy(mypath + "\\Copyables\\pack.png", mypath + "\\Minecraft Randomized Textures")
+    shutil.copy(mypath + "\\Copyables\\pack.mcmeta",
+                mypath + "\\Minecraft Randomized Textures")
+
+    shutil.copy(mypath + "\\Copyables\\pack.png",
+                mypath + "\\Minecraft Randomized Textures")
+
+    shutil.copy(mypath + "\\Copyables\\end.txt",
+                mypath + "\\Minecraft Randomized Textures\\assets\\minecraft\\texts")
+
+    shutil.copy(mypath + "\\Copyables\\splashes.txt",
+                mypath + "\\Minecraft Randomized Textures\\assets\\minecraft\\texts")
 
 
-ignored = ["balls"]
+ignored = ["advancements", "container", "presets", "title", "colormap", "effect", "texts", "accessibility.png",
+           "bars.png", "checkbox.png", "icons.png", "recipe_book.png", "recipe_button.png", "resource_packs.png",
+           "server_selection.png", "social_interactions.png", "spectator_widgets.png", "stream_indicator.png",
+           "toasts.png", "widgets.png", "world_selection.png" "rain.png", "snow.png", "end_sky.png", "clouds.png",
+           "map_icons.png", "nausea.png", "powder_snow_outline.png", "pumpkinblur.png", "shadow.png",
+           "spyglass_scope.png", "underwater.png", "unknown_pack.png", "unknown_server.png", "vignette.png",
+           "white.png", ".gitignore", "gpu_warnlist.json", "regional_compliancies.json"]
 
 entity_texture_randomizer = Randomizer(
-                                 mypath + "\\TestFolder",
-                                 grab_files(mypath + "\\TestFolder", ignored),
-                                 ["Balls.txt", "Please.txt", "kenos.txt"],
-                                 grab_files(mypath + "\\TestFolder", ignored)
+                                 mypath + "\\assets",
+                                 grab_files(mypath + "\\assets", ignored),
+                                 [],
+                                 grab_files(mypath + "\\assets", ignored)
                                 )
 startup()
 entity_texture_randomizer.get_all_files()
