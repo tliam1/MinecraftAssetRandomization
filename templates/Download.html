@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %} Randomize_Page {% endblock %}
 {% block content %}
-<h1>Randomize</h1>
+<h1>You can now download the .zip file</h1>
 
 <!-- change # to a function call or something to do randomization -->
 <!-- post = posting info, get = getting info -->
@@ -20,11 +20,11 @@
 
 <!-- The <a> tag defines a hyperlink, which is used to link from one page to another.-->
 <div class="list-group">
-<!--  <a href="{{ url_for('static', filename='test.txt') }}" download="Randomized_Assets/1.19" class="list-group-item list-group-item-action">(Working test download) Download v1.19.x</a>-->
-  <a href="/Randomize/1.19" class="list-group-item list-group-item-action">(Working test download) Download v1.19.x</a>
-  <a href="#" class="list-group-item list-group-item-action">Download v1.18.x</a>
-  <a href="#" class="list-group-item list-group-item-action">Download v1.17.x</a>
-  <a href="#" class="list-group-item list-group-item-action">Download v1.16.x</a>
+<a href="{{ url_for('static', filename='test.txt') }}" download="Randomized_Assets/1.19" class="list-group-item list-group-item-action">(Actual) Download v1.19.x</a>
+<!--  <a href="/Randomize/1.19" class="list-group-item list-group-item-action">(Working test download) Download v1.19.x</a>-->
+<!--  <a href="#" class="list-group-item list-group-item-action">Download v1.18.x</a>-->
+<!--  <a href="#" class="list-group-item list-group-item-action">Download v1.17.x</a>-->
+<!--  <a href="#" class="list-group-item list-group-item-action">Download v1.16.x</a>-->
 <!--  <a href="#" class="list-group-item list-group-item-action disabled" tabindex="-1" aria-disabled="true">Vestibulum at eros</a>-->
 </div>
 
