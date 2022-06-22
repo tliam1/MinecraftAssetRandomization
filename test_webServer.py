@@ -1,10 +1,12 @@
 from flask import Flask, redirect, url_for, render_template, request
 import os
-from main import ignored_list, randomize
+from main import ignored_textures_default, randomize, ignored_sounds_default, can_randomize, ignored_music_default
+
 #  pip install Flask-Dropzone
 #  pip install flask to get the stuff for this
 folderDir = ""
 app = Flask(__name__)
+
 
 # displays what will be on the home page
 # Get = insecure way of getting info
@@ -28,11 +30,12 @@ def Randomize():
     else:
         return render_template("randomize.html")
 
+
 # background process happening without any refreshing
 @app.route('/Randomize/<Ver_Name>')
 def background_process_randomize(Ver_Name):
-    # if Ver_Name == "1.19":
-    #     randomize(str(Ver_Name), ignored_list)
+    if Ver_Name == "1.19" and can_randomize:
+        randomize(str(Ver_Name), ignored_textures_default, ignored_music_default, ignored_sounds_default)
     return render_template("Download.html")
 
 

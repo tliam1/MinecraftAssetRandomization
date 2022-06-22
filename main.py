@@ -1,9 +1,12 @@
 import os
 import shutil
+import time
+
 from RandomizerScript import Randomizer
 
+# This specifies when things can be randomized, dont delelte this
+can_randomize = True
 # This is the full ignored list, don't delete this
-
 ignored_textures_default = ["advancements", "container", "presets", "title", "colormap", "effect", "texts",
                             "accessibility.png", "bars.png", "checkbox.png", "icons.png", "recipe_book.png",
                             "recipe_button.png", "resource_packs.png", "server_selection.png",
@@ -37,9 +40,24 @@ def grab_files(startdir, ignorelist):
 
     return ballslist
 
+# preps zip file then deletes source, and sets download timer
+def zip_and_delete(destination, source):
+    shutil.make_archive(destination + "/Randomized_MC_Assets", 'zip', source)  # creates zip
+    shutil.rmtree(source)  # removes the Randomized MC folder
+    current_time = time.time()  # sets current time
+    while abs(current_time - time.time()) < 5:  # this is the time before auto removes download (5 sec)
+        print("waiting")
+        continue
+    os.remove(destination + "/Randomized_MC_Assets.zip")  # removes zip from folder
+    listOfGlobals = globals()
+    listOfGlobals['can_randomize'] = True  # allow future randomizations again
+    print("Open Randomizations")
+
 
 def randomize(mc_ver, ignored_textures, ignored_music, ignored_sounds):
 
+    list_of_globals = globals()
+    list_of_globals['can_randomize'] = False  # stop all future randomizations
     os.makedirs("Minecraft " + mc_ver + " Randomized Textures")
 
     def ignore_files(directory, files):
@@ -98,6 +116,7 @@ def randomize(mc_ver, ignored_textures, ignored_music, ignored_sounds):
     songs_randomizer.randomized_list()
     songs_randomizer.rename_and_move(mc_ver)
     print("\nSounds have finished randomizing\n")
+    zip_and_delete(mypath + "/static/zipFiles", mypath + "\\Minecraft " + mc_ver + " Randomized Textures")
 
 
 randomize("1.19", ignored_textures_default, ignored_music_default, ignored_sounds_default)
