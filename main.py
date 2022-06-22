@@ -2,11 +2,12 @@ import os
 from os.path import exists
 import shutil
 import time
+from queue import *
 
 from RandomizerScript import Randomizer
 
 # This specifies when things can be randomized, dont delelte this
-can_randomize = True
+q = Queue()
 # This is the full ignored list, don't delete this
 ignored_textures_default = ["advancements", "container", "presets", "title", "colormap", "effect", "texts",
                             "accessibility.png", "bars.png", "checkbox.png", "icons.png", "recipe_book.png",
@@ -51,9 +52,8 @@ def zip_files(destination, source):
     current_time = time.time()  # sets current time
     while abs(current_time - time.time()) < 1:  # this is the time before auto removes download (5 sec)
         continue
-    list_of_globals = globals()
-    list_of_globals['can_randomize'] = True  # allow future randomizations again
     # print("Open Randomizations")
+    q.get()  # dequeues
 
 
 def halt_download():
@@ -76,9 +76,7 @@ def randomize(mc_ver, ignored_textures, ignored_music, ignored_sounds):
 
     vers_to_mcmeta = {"1.19": "9"}
 
-    list_of_globals = globals()
-    list_of_globals['can_randomize'] = False  # stop all future randomizations
-    while not try_download():  # if someone is in the process of downloading, wait
+    while not try_download():
         continue
     os.makedirs("Minecraft " + mc_ver + " Randomized Textures")
     os.makedirs("Randomized_MC_Assets")
@@ -153,4 +151,4 @@ def randomize(mc_ver, ignored_textures, ignored_music, ignored_sounds):
     zip_files(mypath + "/static/zipFiles", mypath + "\\Randomized_MC_Assets")
 
 
-randomize("1.19", ignored_textures_default, ignored_music_default, ignored_sounds_default)
+# randomize("1.19", ignored_textures_default, ignored_music_default, ignored_sounds_default)

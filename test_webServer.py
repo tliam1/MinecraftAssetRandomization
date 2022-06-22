@@ -1,7 +1,8 @@
 from flask import Flask, redirect, url_for, render_template, request
 import os
-from main import ignored_textures_default, randomize, ignored_sounds_default, can_randomize, ignored_music_default
-from main import halt_download
+from main import ignored_textures_default, randomize, ignored_sounds_default, ignored_music_default
+from main import halt_download, q
+import random
 
 #  pip install Flask-Dropzone
 #  pip install flask to get the stuff for this
@@ -36,10 +37,11 @@ def Randomize():
 @app.route('/Randomize/<Ver_Name>')
 def background_process_randomize(Ver_Name):
     if Ver_Name == "1.19":
-        print("can_Randomize = ", can_randomize)
-        while not can_randomize:
-            continue
+        id = random.randrange(1, 1000000, 1)
+        q.put(id)
         halt_download()  # needed if someone is already downloading something
+        while q.queue[0] != id:
+            continue
         randomize(str(Ver_Name), ignored_textures_default, ignored_music_default, ignored_sounds_default)
     return render_template("Download.html")
 
