@@ -42,7 +42,10 @@ def grab_files(startdir, ignorelist):
     return ballslist
 
 # preps zip file then deletes source, and sets download timer
-def zip_and_delete(destination, source):
+
+
+def zip_files(destination, source):
+
     shutil.make_archive(destination + "/Randomized_MC_Assets", 'zip', source)  # creates zip
     shutil.rmtree(source)  # removes the Randomized MC folder
     current_time = time.time()  # sets current time
@@ -50,13 +53,15 @@ def zip_and_delete(destination, source):
         continue
     list_of_globals = globals()
     list_of_globals['can_randomize'] = True  # allow future randomizations again
-    print("Open Randomizations")
+    # print("Open Randomizations")
+
 
 def halt_download():
     current_time = time.time()  # sets current time
     while abs(current_time - time.time()) < 3:  # this is the time before auto removes download (5 sec)
         continue
     return True
+
 
 def try_download():  # if someone is in the process of downloading, wait
     try:
@@ -66,32 +71,44 @@ def try_download():  # if someone is in the process of downloading, wait
         return False
     return True
 
+
 def randomize(mc_ver, ignored_textures, ignored_music, ignored_sounds):
+
+    vers_to_mcmeta = {"1.19": "9"}
 
     list_of_globals = globals()
     list_of_globals['can_randomize'] = False  # stop all future randomizations
     while not try_download():  # if someone is in the process of downloading, wait
         continue
     os.makedirs("Minecraft " + mc_ver + " Randomized Textures")
+    os.makedirs("Randomized_MC_Assets")
+    shutil.move(mypath + "\\Minecraft " + mc_ver + " Randomized Textures", mypath + "\\Randomized_MC_Assets")
 
     def ignore_files(directory, files):
         return [f for f in files if os.path.isfile(os.path.join(directory, f))]
 
     shutil.copytree(mypath + "\\assets",
-                    mypath + "\\Minecraft " + mc_ver + " Randomized Textures\\assets",
+                    mypath + "\\Randomized_MC_Assets\\Minecraft " + mc_ver + " Randomized Textures\\assets",
                     ignore=ignore_files)
+
     shutil.copy(mypath + "\\Copyables\\pack.png",
-                mypath + "\\Minecraft " + mc_ver + " Randomized Textures")
+                mypath + "\\Randomized_MC_Assets\\Minecraft " + mc_ver + " Randomized Textures")
+
     shutil.copy(mypath + "\\Copyables\\end.txt",
-                mypath + "\\Minecraft " + mc_ver + " Randomized Textures\\assets\\minecraft\\texts")
+                mypath + "\\Randomized_MC_Assets\\Minecraft " + mc_ver +
+                " Randomized Textures\\assets\\minecraft\\texts")
+
     shutil.copy(mypath + "\\Copyables\\splashes.txt",
-                mypath + "\\Minecraft " + mc_ver + " Randomized Textures\\assets\\minecraft\\texts")
-    mcmeta = open(mypath + "\\Minecraft " + mc_ver + " Randomized Textures\\pack.mcmeta", "a")
-    mcmeta.write("{\n \"pack\": {\n   \"pack_format\": 9,\n   "
+                mypath + "\\Randomized_MC_Assets\\Minecraft " + mc_ver +
+                " Randomized Textures\\assets\\minecraft\\texts")
+
+    mcmeta = open(mypath + "\\Randomized_MC_Assets\\Minecraft " + mc_ver + " Randomized Textures\\pack.mcmeta", "a")
+
+    mcmeta.write("{\n \"pack\": {\n   \"pack_format\": " + vers_to_mcmeta[mc_ver] + ",\n   "
                  "\"description\": \"Minecraft textures randomized by Izokia and CosmicShiny\"\n }\n}")
     mcmeta.close()
 
-    logfile = open(mypath + "\\Minecraft " + mc_ver + " Randomized Textures\\log.txt", "a")
+    logfile = open(mypath + "\\Randomized_MC_Assets\\Minecraft " + mc_ver + " Randomized Textures\\log.txt", "a")
     logfile.write("Format: (File_name) is (File_image)\n\n")
     logfile.close()
 
@@ -130,7 +147,10 @@ def randomize(mc_ver, ignored_textures, ignored_music, ignored_sounds):
     songs_randomizer.randomized_list()
     songs_randomizer.rename_and_move(mc_ver)
     print("\nSounds have finished randomizing\n")
-    zip_and_delete(mypath + "/static/zipFiles", mypath + "\\Minecraft " + mc_ver + " Randomized Textures")
+    print("Files have finished randomizing")
+    # You can comment zip_files out if you just want to randomize for yourself, but it doesn't really change anything
+    # other than not zipping the end result
+    zip_files(mypath + "/static/zipFiles", mypath + "\\Randomized_MC_Assets")
 
 
-# randomize("1.19", ignored_textures_default, ignored_music_default, ignored_sounds_default)
+randomize("1.19", ignored_textures_default, ignored_music_default, ignored_sounds_default)

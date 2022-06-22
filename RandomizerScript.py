@@ -44,7 +44,10 @@ class Randomizer:
             directory = x[0]
             for y in x[1]:
                 if rand_file == y:
-                    directory = directory.replace("assets", "Minecraft " + mc_ver + " Randomized Textures\\assets")
+                    directory = directory.replace("assets",
+                                                  "Randomized_MC_Assets\\Minecraft "
+                                                  + mc_ver +
+                                                  " Randomized Textures\\assets")
                     return directory + "\\" + rand_file
 
     def get_rand_file_list(self):
@@ -59,7 +62,7 @@ class Randomizer:
         rand_file_list = self.get_rand_file_list()
         iteration = 0
         mypath = os.path.dirname(os.path.realpath(__file__))
-        logfile = open(mypath + "\\Minecraft " + mc_ver + " Randomized Textures\\log.txt", "a")
+        logfile = open(mypath + "\\Randomized_MC_Assets\\Minecraft " + mc_ver + " Randomized Textures\\log.txt", "a")
         for x in self.directory_and_files:
             for y in x[1]:
                 file = y
