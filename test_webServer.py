@@ -1,19 +1,10 @@
 from flask import Flask, redirect, url_for, render_template, request
-from flask_dropzone import Dropzone
 import os
 from main import ignored_list, randomize
 #  pip install Flask-Dropzone
 #  pip install flask to get the stuff for this
 folderDir = ""
 app = Flask(__name__)
-baseDir = os.path.abspath(os.path.dirname(__file__))
-app.config.update(
-    UPLOADED_PATH=os.path.join(baseDir, 'static'),
-    DROPZONE_MAX_FILE_SIZE=2000,  # Mb
-    DROPZONE_TIMEOUT=10 * 60 * 1000
-)
-dropzone = Dropzone(app)
-
 
 # displays what will be on the home page
 # Get = insecure way of getting info
