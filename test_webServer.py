@@ -1,12 +1,13 @@
 from flask import Flask, redirect, url_for, render_template, request
 import os
+from os.path import exists
 from main import ignored_textures_default, randomize, ignored_sounds_default, ignored_music_default
-from main import halt_download, q
+from main import q, can_randomize, mypath
 import random
+import threading
 
 #  pip install Flask-Dropzone
 #  pip install flask to get the stuff for this
-folderDir = ""
 app = Flask(__name__)
 
 
@@ -37,12 +38,24 @@ def Randomize():
 @app.route('/Randomize/<Ver_Name>')
 def background_process_randomize(Ver_Name):
     if Ver_Name == "1.19":
-        id = random.randrange(1, 1000000, 1)
-        q.put(id)
-        halt_download()  # needed if someone is already downloading something
-        while q.queue[0] != id:
+        client_id = random.randrange(1, 1000000, 1)
+        q.put(client_id)
+        # halt_download()  # needed if someone is already downloading something
+        # while q.queue[0] != id:
+        #     continue
+        print(can_randomize)
+        client_thread = threading.Thread(target=randomize, args=(str(Ver_Name), ignored_textures_default, ignored_music_default, ignored_sounds_default, False,))
+        client_thread.start()
+        client_thread.join()
+        try:
+            print("Starting Thread")
+        except:
+            print("Error: unable to start thread")
+
+        while not exists(mypath + "/static/zipFiles/Randomized_MC_Assets.zip"):  # if removing the zip folder causes a permissions error...wait
             continue
-        randomize(str(Ver_Name), ignored_textures_default, ignored_music_default, ignored_sounds_default)
+        # randomize(str(Ver_Name), ignored_textures_default, ignored_music_default, ignored_sounds_default, False)
+        # print("Running randomization because can_randomize =", can_randomize)
     return render_template("Download.html")
 
 
