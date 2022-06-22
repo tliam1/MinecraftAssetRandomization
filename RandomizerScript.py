@@ -31,8 +31,8 @@ class Randomizer:
                     del self.all_files[random_index]  # deletes item from list
             iterations += 1
 
-        print("Randomized List\t", self.randomized_directory_and_files)
-        print("Unrandomized List\t", self.directory_and_files)
+        # print("Randomized List\t", self.randomized_directory_and_files)
+        # print("Unrandomized List\t", self.directory_and_files)
 
     def get_all_files(self):
         for x in self.directory_and_files:
@@ -59,20 +59,21 @@ class Randomizer:
         rand_file_list = self.get_rand_file_list()
         iteration = 0
         mypath = os.path.dirname(os.path.realpath(__file__))
-        logfile = open(mypath + "\\Minecraft 1.19 Randomized Textures\\log.txt", "a")
-        logfile.write("Format: (File_name) is (File_image)\n\n")
+        logfile = open(mypath + "\\Minecraft " + mc_ver + " Randomized Textures\\log.txt", "a")
         for x in self.directory_and_files:
             for y in x[1]:
                 file = y
                 directory = x[0]
                 fullpath = (directory + "\\" + file)
+
                 shutil.copy(fullpath, mypath + "\\Temp")
                 os.rename(mypath + "\\Temp\\" + file, mypath + "\\Temp\\" + rand_file_list[iteration])
                 new_directory = self.find_dir(rand_file_list[iteration], mc_ver)
                 shutil.move(mypath + "\\Temp\\" + rand_file_list[iteration], new_directory)
+
                 logfile.write(rand_file_list[iteration] + " is " + file + "\n")
+
                 iteration += 1
                 print("Randomized " + str(iteration) + " file(s)")
         else:
-            print("\nRandomization Finished. Randomization list can be found in log.txt in texture pack folder")
             logfile.close()

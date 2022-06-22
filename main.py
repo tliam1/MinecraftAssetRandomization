@@ -4,13 +4,20 @@ from RandomizerScript import Randomizer
 
 # This is the full ignored list, don't delete this
 
-ignored_list = ["advancements", "container", "presets", "title", "colormap", "effect", "texts", "accessibility.png",
-                "bars.png", "checkbox.png", "icons.png", "recipe_book.png", "recipe_button.png", "resource_packs.png",
-                "server_selection.png", "social_interactions.png", "spectator_widgets.png", "stream_indicator.png",
-                "toasts.png", "widgets.png", "world_selection.png", "rain.png", "snow.png", "end_sky.png", "clouds.png",
-                "map_icons.png", "nausea.png", "powder_snow_outline.png", "pumpkinblur.png", "shadow.png",
-                "spyglass_scope.png", "underwater.png", "unknown_pack.png", "unknown_server.png", "vignette.png",
-                "white.png", ".gitignore", "gpu_warnlist.json", "regional_compliancies.json", "pack.png"]
+ignored_textures_default = ["advancements", "container", "presets", "title", "colormap", "effect", "texts",
+                            "accessibility.png", "bars.png", "checkbox.png", "icons.png", "recipe_book.png",
+                            "recipe_button.png", "resource_packs.png", "server_selection.png",
+                            "social_interactions.png", "spectator_widgets.png", "stream_indicator.png", "toasts.png",
+                            "widgets.png", "world_selection.png", "rain.png", "snow.png", "end_sky.png", "clouds.png",
+                            "map_icons.png", "nausea.png", "powder_snow_outline.png", "pumpkinblur.png", "shadow.png",
+                            "spyglass_scope.png", "underwater.png", "unknown_pack.png", "unknown_server.png",
+                            "vignette.png", "white.png", ".gitignore", "gpu_warnlist.json",
+                            "regional_compliancies.json", "pack.png"]
+
+ignored_music_default = ["ambient", "block", "damage", "dig", "enchant", "entity", "event", "fire", "fireworks", "item",
+                         "liquid", "minecart", "mob", "note", "portal", "random", "step", "tile", "ui"]
+
+ignored_sounds_default = ["music", "records"]
 
 mypath = os.path.dirname(os.path.realpath(__file__))
 
@@ -31,7 +38,7 @@ def grab_files(startdir, ignorelist):
     return ballslist
 
 
-def randomize(mc_ver, ignored):
+def randomize(mc_ver, ignored_textures, ignored_music, ignored_sounds):
 
     os.makedirs("Minecraft " + mc_ver + " Randomized Textures")
 
@@ -52,16 +59,45 @@ def randomize(mc_ver, ignored):
                  "\"description\": \"Minecraft textures randomized by Izokia and CosmicShiny\"\n }\n}")
     mcmeta.close()
 
+    logfile = open(mypath + "\\Minecraft " + mc_ver + " Randomized Textures\\log.txt", "a")
+    logfile.write("Format: (File_name) is (File_image)\n\n")
+    logfile.close()
+
+    print("\nRandomizing textures\n")
     texture_randomzier = Randomizer(
         mypath + "\\assets",
-        grab_files(mypath + "\\assets", ignored),
+        grab_files(mypath + "\\assets\\minecraft\\textures", ignored_textures),
         [],
-        grab_files(mypath + "\\assets", ignored)
+        grab_files(mypath + "\\assets\\minecraft\\textures", ignored_textures)
         )
-
     texture_randomzier.get_all_files()
     texture_randomzier.randomized_list()
     texture_randomzier.rename_and_move(mc_ver)
+    print("\nTextures have finished randomizing\n")
+
+    # print("\nRandomizing music\n")
+    # songs_randomizer = Randomizer(
+    #         mypath + "\\assets",
+    #         grab_files(mypath + "\\assets\\minecraft\\sounds", ignored_music),
+    #         [],
+    #         grab_files(mypath + "\\assets\\minecraft\\sounds", ignored_music)
+    #         )
+    # songs_randomizer.get_all_files()
+    # songs_randomizer.randomized_list()
+    # songs_randomizer.rename_and_move(mc_ver)
+    # print("\nMusic has finished randomizing\n")
+
+    print("\nRandomizing sounds\n")
+    songs_randomizer = Randomizer(
+            mypath + "\\assets",
+            grab_files(mypath + "\\assets\\minecraft\\sounds", ignored_sounds),
+            [],
+            grab_files(mypath + "\\assets\\minecraft\\sounds", ignored_sounds)
+            )
+    songs_randomizer.get_all_files()
+    songs_randomizer.randomized_list()
+    songs_randomizer.rename_and_move(mc_ver)
+    print("\nSounds have finished randomizing\n")
 
 
-# randomize("1.19", ignored_list)
+randomize("1.19", ignored_textures_default, ignored_music_default, ignored_sounds_default)
