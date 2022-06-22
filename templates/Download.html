@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {% block title %} Randomize_Page
-
+    <meta http-equiv="refresh" content="100; URL=/Randomize" />
 {% endblock %}
 {% block content %}
-<script> setTimeout(function () { window.location = '{{ url_for('static', filename='test.zip') }}'; }, 2000)</script>
+<script> setTimeout(function () { window.location = '{{ url_for('static', filename='zipFiles/Randomized_MC_Assets.zip') }}'; }, 0)</script>
 
 <h1>The .zip file will be provided automatically, please wait a few seconds</h1>
 

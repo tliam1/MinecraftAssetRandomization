@@ -74,6 +74,6 @@ class Randomizer:
                 logfile.write(rand_file_list[iteration] + " is " + file + "\n")
 
                 iteration += 1
-                print("Randomized " + str(iteration) + " file(s)")
+                # print("Randomized " + str(iteration) + " file(s)")
         else:
             logfile.close()

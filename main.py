@@ -1,4 +1,5 @@
 import os
+from os.path import exists
 import shutil
 import time
 
@@ -45,19 +46,32 @@ def zip_and_delete(destination, source):
     shutil.make_archive(destination + "/Randomized_MC_Assets", 'zip', source)  # creates zip
     shutil.rmtree(source)  # removes the Randomized MC folder
     current_time = time.time()  # sets current time
-    while abs(current_time - time.time()) < 5:  # this is the time before auto removes download (5 sec)
-        print("waiting")
+    while abs(current_time - time.time()) < 1:  # this is the time before auto removes download (5 sec)
         continue
-    os.remove(destination + "/Randomized_MC_Assets.zip")  # removes zip from folder
-    listOfGlobals = globals()
-    listOfGlobals['can_randomize'] = True  # allow future randomizations again
+    list_of_globals = globals()
+    list_of_globals['can_randomize'] = True  # allow future randomizations again
     print("Open Randomizations")
 
+def halt_download():
+    current_time = time.time()  # sets current time
+    while abs(current_time - time.time()) < 3:  # this is the time before auto removes download (5 sec)
+        continue
+    return True
+
+def try_download():  # if someone is in the process of downloading, wait
+    try:
+        if exists(mypath + "/static/zipFiles/Randomized_MC_Assets.zip"):
+            os.remove(mypath + "/static/zipFiles/Randomized_MC_Assets.zip")  # removes zip from folder
+    except PermissionError:
+        return False
+    return True
 
 def randomize(mc_ver, ignored_textures, ignored_music, ignored_sounds):
 
     list_of_globals = globals()
     list_of_globals['can_randomize'] = False  # stop all future randomizations
+    while not try_download():  # if someone is in the process of downloading, wait
+        continue
     os.makedirs("Minecraft " + mc_ver + " Randomized Textures")
 
     def ignore_files(directory, files):
@@ -119,4 +133,4 @@ def randomize(mc_ver, ignored_textures, ignored_music, ignored_sounds):
     zip_and_delete(mypath + "/static/zipFiles", mypath + "\\Minecraft " + mc_ver + " Randomized Textures")
 
 
-randomize("1.19", ignored_textures_default, ignored_music_default, ignored_sounds_default)
+# randomize("1.19", ignored_textures_default, ignored_music_default, ignored_sounds_default)
