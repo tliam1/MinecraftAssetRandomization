@@ -53,12 +53,13 @@ def zip_files(destination, source):
     # current_time = time.time()  # sets current time
     # while abs(current_time - time.time()) < 1:  # this is the time before auto removes download (5 sec)
     #     continue
-    halt_download()
     # print("Open Randomizations")
     q.queue.clear()
     list_of_globals = globals()
     list_of_globals["can_randomize"] = True
 
+def canDownload():
+    return can_randomize
 
 def halt_download():
     current_time = time.time()  # sets current time
@@ -80,7 +81,6 @@ def try_download():  # if someone is in the process of downloading, wait
 
 def try_create(ver):  # if someone is in the process of downloading, wait
     try:
-        os.makedirs("Minecraft " + ver + " Randomized Textures")
         os.makedirs("Randomized_MC_Assets")
     except FileExistsError:
         return False
@@ -88,21 +88,28 @@ def try_create(ver):  # if someone is in the process of downloading, wait
 
 
 def randomize(mc_ver, ignored_textures, ignored_music, ignored_sounds, bypass):
-    if not can_randomize:
-        return
     halt_download()
-    while not try_download():
-        continue
+    if not canDownload():
+        print("we cannot download rn")
+        return
+
     list_of_globals = globals()
     list_of_globals["can_randomize"] = False
+
+    if not try_download():
+        print("NO EXE EXISTS SO WE WILL WAIT FOR A RANDOMIZATION PROCESS")
+        return
     # if not try_download():  # if removing the zip folder causes a permissions error...wait
     #     return
     # if not try_create(mc_ver):
     #     return
 
     vers_to_mcmeta = {"1.19": "9"}
+    if not try_create(mc_ver):
+        print("got stuck & process is broken")
+        return
     os.makedirs("Minecraft " + mc_ver + " Randomized Textures")
-    os.makedirs("Randomized_MC_Assets")
+    # os.makedirs("Randomized_MC_Assets")
     shutil.move(mypath + "\\Minecraft " + mc_ver + " Randomized Textures", mypath + "\\Randomized_MC_Assets")
 
     def ignore_files(directory, files):
@@ -173,6 +180,7 @@ def randomize(mc_ver, ignored_textures, ignored_music, ignored_sounds, bypass):
     # other than not zipping the end result
     if not bypass:
         zip_files(mypath + "/static/zipFiles", mypath + "\\Randomized_MC_Assets")
+
 
 # run this once to start the program
 # randomize("1.19", ignored_textures_default, ignored_music_default, ignored_sounds_default, True)
