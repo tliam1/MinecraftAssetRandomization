@@ -5,10 +5,17 @@
 {% block title %} Randomize_Page
 {% endblock %}
 {% block content %}
+<script type="text/javascript">
+    // Set the cursor ASAP to "Wait"
+    document.body.style.cursor='wait';
+
+    // When the window has finished loading, set it back to default...
+    window.onload=function(){document.body.style.cursor='default';}
+</script>
 <script> setTimeout(function () { window.location = '{{ url_for('static', filename='zipFiles/Randomized_MC_Assets.zip') }}'; }, 0)</script>
 <h1>The .zip file will be provided automatically, please wait a few seconds</h1>
 <script>
-    setTimeout(redirect, 10);
+    setTimeout(redirect, 100);
     function redirect() { window.location = "/Randomize"; }
 </script>
 
