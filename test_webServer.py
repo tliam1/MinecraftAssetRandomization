@@ -56,4 +56,4 @@ def background_process_randomize(Ver_Name):
 
 # still need to learn why
 if __name__ == "__main__":
-    app.run(debug=True)
+    print("mans")
