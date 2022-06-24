@@ -90,7 +90,8 @@ def try_create():  # if someone is in the process of downloading, wait
 
 
 def randomize(mc_ver, ignored_textures, ignored_music, ignored_sounds, bypass):
-    halt_download()
+    if bypass:
+        halt_download()
     if not can_download():
         print("we cannot download rn")
         return
@@ -187,4 +188,4 @@ def randomize(mc_ver, ignored_textures, ignored_music, ignored_sounds, bypass):
 
 
 # run this once to start the program
-randomize("1.19", ignored_textures_default, ignored_music_default, ignored_sounds_default, False)
+# randomize("1.19", ignored_textures_default, ignored_music_default, ignored_sounds_default, False)
