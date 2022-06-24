@@ -45,13 +45,15 @@ class Randomizer:
             directory = x[0]
             for y in x[1]:
                 if rand_file == y:
-                    temp_index = x[1].index(y)
+                    temp_index = self.directory_and_files[iterations][1].index(y)
 
                     print(self.directory_and_files[iterations][1][temp_index])
+                    print(x[1][temp_index])
                     directory = directory.replace("assets",
                                                   "Randomized_MC_Assets\\Minecraft "
                                                   + mc_ver +
                                                   " Randomized Textures\\assets")
+                    del self.directory_and_files[iterations][1][temp_index]
                     return directory + "\\" + rand_file
             iterations += 1
 
@@ -85,3 +87,5 @@ class Randomizer:
                 # print("Randomized " + str(iteration) + " file(s)")
         else:
             logfile.close()
+
+        print(self.directory_and_files)
