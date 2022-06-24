@@ -6,12 +6,13 @@ import random
 
 class Randomizer:
 
-    def __init__(self,  root_location, directory_and_files, ignored_files, directory_and_files_to_randomize):
+    def __init__(self,  root_location, directory_and_files, ignored_files, directory_and_files_to_randomize, same_list):
         self.directory_and_files = directory_and_files
         self.root = root_location
         self.randomized_directory_and_files = directory_and_files_to_randomize
         self.all_files = []
         self.ignored_files = ignored_files
+        self.same_list = same_list
 
     def randomized_list(self):
         # note this is randomizing a list that ignored some files so some are missing
@@ -47,8 +48,6 @@ class Randomizer:
                 if rand_file == y:
                     temp_index = self.directory_and_files[iterations][1].index(y)
 
-                    print(self.directory_and_files[iterations][1][temp_index])
-                    print(x[1][temp_index])
                     directory = directory.replace("assets",
                                                   "Randomized_MC_Assets\\Minecraft "
                                                   + mc_ver +
@@ -70,7 +69,7 @@ class Randomizer:
         iteration = 0
         mypath = os.path.dirname(os.path.realpath(__file__))
         logfile = open(mypath + "\\Randomized_MC_Assets\\Minecraft " + mc_ver + " Randomized Textures\\log.txt", "a")
-        for x in self.directory_and_files:
+        for x in self.same_list:
             for y in x[1]:
                 file = y
                 directory = x[0]
@@ -87,5 +86,3 @@ class Randomizer:
                 # print("Randomized " + str(iteration) + " file(s)")
         else:
             logfile.close()
-
-        print(self.directory_and_files)

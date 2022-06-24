@@ -58,8 +58,10 @@ def zip_files(destination, source):
     list_of_globals = globals()
     list_of_globals["can_randomize"] = True
 
-def canDownload():
+
+def can_download():
     return can_randomize
+
 
 def halt_download():
     current_time = time.time()  # sets current time
@@ -79,7 +81,7 @@ def try_download():  # if someone is in the process of downloading, wait
     return True
 
 
-def try_create(ver):  # if someone is in the process of downloading, wait
+def try_create():  # if someone is in the process of downloading, wait
     try:
         os.makedirs("Randomized_MC_Assets")
     except FileExistsError:
@@ -89,7 +91,7 @@ def try_create(ver):  # if someone is in the process of downloading, wait
 
 def randomize(mc_ver, ignored_textures, ignored_music, ignored_sounds, bypass):
     halt_download()
-    if not canDownload():
+    if not can_download():
         print("we cannot download rn")
         return
 
@@ -105,7 +107,7 @@ def randomize(mc_ver, ignored_textures, ignored_music, ignored_sounds, bypass):
     #     return
 
     vers_to_mcmeta = {"1.19": "9"}
-    if not try_create(mc_ver):
+    if not try_create():
         print("got stuck & process is broken")
         return
     os.makedirs("Minecraft " + mc_ver + " Randomized Textures")
@@ -133,7 +135,7 @@ def randomize(mc_ver, ignored_textures, ignored_music, ignored_sounds, bypass):
     mcmeta = open(mypath + "\\Randomized_MC_Assets\\Minecraft " + mc_ver + " Randomized Textures\\pack.mcmeta", "a")
 
     mcmeta.write("{\n \"pack\": {\n   \"pack_format\": " + vers_to_mcmeta[mc_ver] + ",\n   "
-                                                                                    "\"description\": \"Minecraft textures randomized by Izokia and CosmicShiny\"\n }\n}")
+                 "\"description\": \"Minecraft textures randomized by Izokia and CosmicShiny\"\n }\n}")
     mcmeta.close()
 
     logfile = open(mypath + "\\Randomized_MC_Assets\\Minecraft " + mc_ver + " Randomized Textures\\log.txt", "a")
@@ -145,6 +147,7 @@ def randomize(mc_ver, ignored_textures, ignored_music, ignored_sounds, bypass):
         mypath + "\\assets",
         grab_files(mypath + "\\assets\\minecraft\\textures", ignored_textures),
         [],
+        grab_files(mypath + "\\assets\\minecraft\\textures", ignored_textures),
         grab_files(mypath + "\\assets\\minecraft\\textures", ignored_textures)
     )
     texture_randomzier.get_all_files()
@@ -169,6 +172,7 @@ def randomize(mc_ver, ignored_textures, ignored_music, ignored_sounds, bypass):
         mypath + "\\assets",
         grab_files(mypath + "\\assets\\minecraft\\sounds", ignored_sounds),
         [],
+        grab_files(mypath + "\\assets\\minecraft\\sounds", ignored_sounds),
         grab_files(mypath + "\\assets\\minecraft\\sounds", ignored_sounds)
     )
     songs_randomizer.get_all_files()
@@ -183,4 +187,4 @@ def randomize(mc_ver, ignored_textures, ignored_music, ignored_sounds, bypass):
 
 
 # run this once to start the program
-randomize("1.19", ignored_textures_default, ignored_music_default, ignored_sounds_default, True)
+randomize("1.19", ignored_textures_default, ignored_music_default, ignored_sounds_default, False)

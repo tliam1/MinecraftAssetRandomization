@@ -2,7 +2,7 @@ from flask import Flask, redirect, url_for, render_template, request
 import os
 from os.path import exists
 from main import ignored_textures_default, randomize, ignored_sounds_default, ignored_music_default
-from main import q, canDownload, mypath
+from main import q, can_download, mypath
 import random
 import threading
 
@@ -42,8 +42,8 @@ def background_process_randomize(Ver_Name):
         # halt_download()  # needed if someone is already downloading something
         # while q.queue[0] != id:
         #     continue
-        if canDownload():
-            print(canDownload())
+        if can_download():
+            print(can_download())
             client_thread = threading.Thread(target=randomize, args=(str(Ver_Name), ignored_textures_default, ignored_music_default, ignored_sounds_default, False,))
             client_thread.start()
             client_thread.join()  # join waits till thread ends before continuing
