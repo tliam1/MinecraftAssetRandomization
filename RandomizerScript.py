@@ -40,15 +40,20 @@ class Randomizer:
                 self.all_files.append(y)
 
     def find_dir(self, rand_file, mc_ver):
+        iterations = 0
         for x in self.directory_and_files:
             directory = x[0]
             for y in x[1]:
                 if rand_file == y:
+                    temp_index = x[1].index(y)
+
+                    print(self.directory_and_files[iterations][1][temp_index])
                     directory = directory.replace("assets",
                                                   "Randomized_MC_Assets\\Minecraft "
                                                   + mc_ver +
                                                   " Randomized Textures\\assets")
                     return directory + "\\" + rand_file
+            iterations += 1
 
     def get_rand_file_list(self):
         rand_file_list = []
