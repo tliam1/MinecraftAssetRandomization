@@ -1,11 +1,98 @@
 {% extends "base.html" %}
 {% block title %} HomePage {% endblock %}
 {% block content %}
-<h1>Home Page</h1>
+
+<div style="text-shadow: 2px 2px black;">
+    <h1>Minecraft Default Texture Pack Randomizer</h1>
+</div>
     <!--<h1> </h1> = Headers-->
-    <p>Hello World!</p>
-    <p>This is a randomizer for Minecraft's asset folder</p>
-    <p>This website is currently in developement and will be released soon</p>
+<div style="text-shadow: 2px 2px black; font-size: 1.2vw;">
+    <p>This site generates a randomized texture pack to be used with Minecraft: Java Edition</p>
+    <p>This completely randomizes everything excluding music & UI</p>
+    <p>Once you select the version you want, click the download button</p>
+    <p>Notice: This will take time! The download prep should take up to 30 seconds at the maximum</p>
+    <p>Once the .zip file is ready for download, you should see it appear at the bottom of your screen</p>
+    <p>If there are any issues please contact us at: </p>
+    <p>This project is currently in developement, so expect future updates</p>
+</div>
+
+  <div class="space">
+        <div class="space">
+            <div class="space">
+                <div class="space">
+                    <div class="space">
+                        <div class="space">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+  </div>
+
+
+<script>
+   function clickAndDisable(link) {
+     // disable subsequent clicks
+     link.onclick = function(event) {
+        event.preventDefault();
+     }
+   }
+</script>
+<!-- The <a> tag defines a hyperlink, which is used to link from one page to another.-->
+<!--<div class="list-group">-->
+<!--&lt;!&ndash;  <a href="{{ url_for('static', filename='test.txt') }}" download="Randomized_Assets/1.19" class="list-group-item list-group-item-action">(Working test download) Download v1.19.x</a>&ndash;&gt;-->
+<!--  <a href="/Randomize/1.19" class="list-group-item list-group-item-action" onclick="document.body.style.cursor='wait'; clickAndDisable(this);">(Working test download) Download v1.19.x</a>-->
+<!--  <a href="#" class="list-group-item list-group-item-action">Download v1.18.x</a>-->
+<!--  <a href="#" class="list-group-item list-group-item-action">Download v1.17.x</a>-->
+<!--  <a href="#" class="list-group-item list-group-item-action">Download v1.16.x</a>-->
+<!--&lt;!&ndash;  <a href="#" class="list-group-item list-group-item-action disabled" tabindex="-1" aria-disabled="true">Vestibulum at eros</a>&ndash;&gt;-->
+<!--</div>-->
+
+<script type="text/javascript">
+  function f1()
+  {
+    document.getElementById("downloadButton").href="/Randomize/1.19";
+    document.getElementById("dropdownMenuLink").textContent = 'v1.19.x';
+  }
+
+  function f2(link){
+    if(document.getElementById("dropdownMenuLink").textContent == 'v1.19.x'){
+        link.onclick = function(event) {
+            event.preventDefault();
+        }
+        document.body.style.cursor='wait';
+        document.getElementById("downloadButton").textContent = 'Downloading';
+    }
+  }
+</script>
+
+<div class="dropdown">
+  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="height:45px;width:50%;" >
+    Versions
+  </a>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="width:50%;">
+    <a class="dropdown-item" href="#" onclick="f1(); return false;" style="width:100%;">Download v1.19.x</a>
+<!--    <a class="dropdown-item" href="#">Another action</a>-->
+<!--    <a class="dropdown-item" href="#">Something else here</a>-->
+  </div>
+</div>
+  <div class="space">
+        <div class="space">
+            <div class="space">
+                <div class="space">
+                    <div class="space">
+                        <div class="space">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+  </div>
+<!--/Randomize/1.19-->
+<!--clickAndDisable(this); document.body.style.cursor='wait';-->
+<div><a class="btn btn-success" id="downloadButton" href="#" role="button" onclick="f2(this);" style="height:45px;width:50%;">Download</a></div>
     <!--<p> </p> = paragraph start and end-->
 <!--    <p>{{content}}</p>-->
 <!--    {% for i in content %}-->

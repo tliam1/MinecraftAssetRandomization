@@ -19,18 +19,18 @@ def Home_Page():
     return render_template("index.html", content=[])
 
 
-@app.route("/About_Us")
-def About_Us():
-    return render_template("About_Us.html")
+# @app.route("/About_Us")
+# def About_Us():
+#     return render_template("About_Us.html")
 
 
-@app.route("/Randomize", methods=["POST", "GET"])
-def Randomize():
-    # randomize before this point or the death of all of us begins
-    if request.method == "POST":
-        return render_template("randomize.html")
-    else:
-        return render_template("randomize.html")
+# @app.route("/Randomize", methods=["POST", "GET"])
+# def Randomize():
+#     # randomize before this point or the death of all of us begins
+#     if request.method == "POST":
+#         return render_template("randomize.html")
+#     else:
+#         return render_template("randomize.html")
 
 
 # background process happening without any refreshing
