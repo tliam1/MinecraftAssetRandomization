@@ -80,7 +80,7 @@ class Randomizer:
                     print("Temp file exists here!")
                 else:
                     os.makedirs("Temp")
-                os.rename(mypath + "/Temp/" + file, mypath + "/Temp/" + rand_file_list[iteration])
+                os.rename(mypath + "/Temp/" + file, os.path.join(mypath + "/Temp/", rand_file_list[iteration]))
                 new_directory = self.find_dir(rand_file_list[iteration], mc_ver)
                 print("CP6")
                 shutil.move(mypath + "/Temp/" + rand_file_list[iteration], new_directory)
