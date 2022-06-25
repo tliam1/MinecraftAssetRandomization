@@ -68,7 +68,8 @@ class Randomizer:
         rand_file_list = self.get_rand_file_list()
         iteration = 0
         # this bool check is pain but fuck it
-        using_python = False
+        using_python = True
+
         if using_python:
             mypath = os.path.dirname(os.path.realpath(__file__))
         else:

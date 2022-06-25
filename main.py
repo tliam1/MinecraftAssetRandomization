@@ -24,7 +24,7 @@ ignored_music_default = ["ambient", "block", "damage", "dig", "enchant", "entity
                          "liquid", "minecart", "mob", "note", "portal", "random", "step", "tile", "ui"]
 
 ignored_sounds_default = ["music", "records"]
-using_python = False
+using_python = True
 
 if using_python:
     mypath = os.path.dirname(os.path.abspath(__file__))
@@ -202,4 +202,4 @@ def randomize(mc_ver, ignored_textures, ignored_music, ignored_sounds, bypass):
 
 
 # run this once to start the program
-# randomize("1.19", ignored_textures_default, ignored_music_default, ignored_sounds_default, True)
+randomize("1.19", ignored_textures_default, ignored_music_default, ignored_sounds_default, True)
