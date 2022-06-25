@@ -25,7 +25,7 @@ ignored_music_default = ["ambient", "block", "damage", "dig", "enchant", "entity
 
 ignored_sounds_default = ["music", "records"]
 
-mypath = os.path.dirname(os.path.realpath(__file__))
+mypath = os.path.dirname(os.path.abspath(__file__))
 
 
 # print(mypath)
@@ -90,6 +90,7 @@ def try_create():  # if someone is in the process of downloading, wait
 
 
 def randomize(mc_ver, ignored_textures, ignored_music, ignored_sounds, bypass):
+    print(mypath)
     if not bypass:
         halt_download()
     if not can_download():
@@ -113,43 +114,43 @@ def randomize(mc_ver, ignored_textures, ignored_music, ignored_sounds, bypass):
         return
     os.makedirs("Minecraft " + mc_ver + " Randomized Textures")
     # os.makedirs("Randomized_MC_Assets")
-    shutil.move(mypath + "\\Minecraft " + mc_ver + " Randomized Textures", mypath + "\\Randomized_MC_Assets")
+    shutil.move(mypath + "/Minecraft " + mc_ver + " Randomized Textures", mypath + "/Randomized_MC_Assets")
 
     def ignore_files(directory, files):
         return [f for f in files if os.path.isfile(os.path.join(directory, f))]
 
-    shutil.copytree(mypath + "\\assets",
-                    mypath + "\\Randomized_MC_Assets\\Minecraft " + mc_ver + " Randomized Textures\\assets",
+    shutil.copytree(mypath + "/assets",
+                    mypath + "/Randomized_MC_Assets/Minecraft " + mc_ver + " Randomized Textures/assets",
                     ignore=ignore_files)
 
-    shutil.copy(mypath + "\\Copyables\\pack.png",
-                mypath + "\\Randomized_MC_Assets\\Minecraft " + mc_ver + " Randomized Textures")
+    shutil.copy(mypath + "/Copyables/pack.png",
+                mypath + "/Randomized_MC_Assets/Minecraft " + mc_ver + " Randomized Textures")
 
-    shutil.copy(mypath + "\\Copyables\\end.txt",
-                mypath + "\\Randomized_MC_Assets\\Minecraft " + mc_ver +
-                " Randomized Textures\\assets\\minecraft\\texts")
+    shutil.copy(mypath + "/Copyables/end.txt",
+                mypath + "/Randomized_MC_Assets/Minecraft " + mc_ver +
+                " Randomized Textures/assets/minecraft/texts")
 
-    shutil.copy(mypath + "\\Copyables\\splashes.txt",
-                mypath + "\\Randomized_MC_Assets\\Minecraft " + mc_ver +
-                " Randomized Textures\\assets\\minecraft\\texts")
+    shutil.copy(mypath + "/Copyables/splashes.txt",
+                mypath + "/Randomized_MC_Assets/Minecraft " + mc_ver +
+                " Randomized Textures/assets/minecraft/texts")
 
-    mcmeta = open(mypath + "\\Randomized_MC_Assets\\Minecraft " + mc_ver + " Randomized Textures\\pack.mcmeta", "a")
+    mcmeta = open(mypath + "/Randomized_MC_Assets/Minecraft " + mc_ver + " Randomized Textures/pack.mcmeta", "a")
 
     mcmeta.write("{\n \"pack\": {\n   \"pack_format\": " + vers_to_mcmeta[mc_ver] + ",\n   "
                  "\"description\": \"Minecraft textures randomized by Izokia and CosmicShiny\"\n }\n}")
     mcmeta.close()
 
-    logfile = open(mypath + "\\Randomized_MC_Assets\\Minecraft " + mc_ver + " Randomized Textures\\log.txt", "a")
+    logfile = open(mypath + "/Randomized_MC_Assets/Minecraft " + mc_ver + " Randomized Textures/log.txt", "a")
     logfile.write("Format: (File_name) is (File_image)\n\n")
     logfile.close()
 
     print("\nRandomizing textures\n")
     texture_randomzier = Randomizer(
-        mypath + "\\assets",
-        grab_files(mypath + "\\assets\\minecraft\\textures", ignored_textures),
+        mypath + "/assets",
+        grab_files(mypath + "/assets/minecraft/textures", ignored_textures),
         [],
-        grab_files(mypath + "\\assets\\minecraft\\textures", ignored_textures),
-        grab_files(mypath + "\\assets\\minecraft\\textures", ignored_textures)
+        grab_files(mypath + "/assets/minecraft/textures", ignored_textures),
+        grab_files(mypath + "/assets/minecraft/textures", ignored_textures)
     )
     texture_randomzier.get_all_files()
     texture_randomzier.randomized_list()
@@ -170,11 +171,11 @@ def randomize(mc_ver, ignored_textures, ignored_music, ignored_sounds, bypass):
 
     print("\nRandomizing sounds\n")
     songs_randomizer = Randomizer(
-        mypath + "\\assets",
-        grab_files(mypath + "\\assets\\minecraft\\sounds", ignored_sounds),
+        mypath + "/assets",
+        grab_files(mypath + "/assets/minecraft/sounds", ignored_sounds),
         [],
-        grab_files(mypath + "\\assets\\minecraft\\sounds", ignored_sounds),
-        grab_files(mypath + "\\assets\\minecraft\\sounds", ignored_sounds)
+        grab_files(mypath + "/assets/minecraft/sounds", ignored_sounds),
+        grab_files(mypath + "/assets/minecraft/sounds", ignored_sounds)
     )
     songs_randomizer.get_all_files()
     songs_randomizer.randomized_list()
@@ -184,8 +185,8 @@ def randomize(mc_ver, ignored_textures, ignored_music, ignored_sounds, bypass):
     # You can comment zip_files out if you just want to randomize for yourself, but it doesn't really change anything
     # other than not zipping the end result
     if not bypass:
-        zip_files(mypath + "/static/zipFiles", mypath + "\\Randomized_MC_Assets")
+        zip_files(mypath + "/static/zipFiles", mypath + "/Randomized_MC_Assets")
 
 
 # run this once to start the program
-# randomize("1.19", ignored_textures_default, ignored_music_default, ignored_sounds_default, True)
+randomize("1.19", ignored_textures_default, ignored_music_default, ignored_sounds_default, False)

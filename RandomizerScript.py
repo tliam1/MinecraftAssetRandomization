@@ -68,17 +68,17 @@ class Randomizer:
         rand_file_list = self.get_rand_file_list()
         iteration = 0
         mypath = os.path.dirname(os.path.realpath(__file__))
-        logfile = open(mypath + "\\Randomized_MC_Assets\\Minecraft " + mc_ver + " Randomized Textures\\log.txt", "a")
+        logfile = open(mypath + "/Randomized_MC_Assets/Minecraft " + mc_ver + " Randomized Textures/log.txt", "a")
         for x in self.same_list:
             for y in x[1]:
                 file = y
                 directory = x[0]
-                fullpath = (directory + "\\" + file)
+                fullpath = (directory + "/" + file)
 
-                shutil.copy(fullpath, mypath + "\\Temp")
-                os.rename(mypath + "\\Temp\\" + file, mypath + "\\Temp\\" + rand_file_list[iteration])
+                shutil.copy(fullpath, mypath + "/Temp")
+                os.rename(mypath + "/Temp/" + file, mypath + "/Temp/" + rand_file_list[iteration])
                 new_directory = self.find_dir(rand_file_list[iteration], mc_ver)
-                shutil.move(mypath + "\\Temp\\" + rand_file_list[iteration], new_directory)
+                shutil.move(mypath + "/Temp/" + rand_file_list[iteration], new_directory)
 
                 logfile.write(rand_file_list[iteration] + " is " + file + "\n")
 
