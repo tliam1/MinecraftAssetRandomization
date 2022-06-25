@@ -24,13 +24,12 @@ ignored_music_default = ["ambient", "block", "damage", "dig", "enchant", "entity
                          "liquid", "minecart", "mob", "note", "portal", "random", "step", "tile", "ui"]
 
 ignored_sounds_default = ["music", "records"]
+usingPython = True
 
-
-usingPython = False
 if usingPython:
     mypath = os.path.dirname(os.path.abspath(__file__))
 else:
-    mypath = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    myPath = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # print(mypath)
@@ -117,31 +116,31 @@ def randomize(mc_ver, ignored_textures, ignored_music, ignored_sounds, bypass):
     if not try_create():
         print("got stuck & process is broken")
         return
-    print("prepping")
-    os.makedirs("Randomized_MC_Assets/"+"Minecraft " + mc_ver + " Randomized Textures")
+    print("CP 1")
+    os.makedirs(mypath+"/Randomized_MC_Assets/Minecraft " + mc_ver + " Randomized Textures")
     # os.makedirs("Randomized_MC_Assets")
-    # shutil.move(mypath + "/Minecraft " + mc_ver + " Randomized Textures", mypath + "/Randomized_MC_Assets")
-    print("Tried moving minecraft folder into randomized textures folder")
+    # shutil.move(mypath + "/Randomized_MC_Assets/Minecraft " + mc_ver + " Randomized Textures", mypath + "/Randomized_MC_Assets")
+    print("CP 2")
 
     def ignore_files(directory, files):
         return [f for f in files if os.path.isfile(os.path.join(directory, f))]
 
-    shutil.copytree(mypath + "assets",
-                    mypath + "Randomized_MC_Assets/Minecraft " + mc_ver + " Randomized Textures/assets",
+    shutil.copytree(mypath + "/assets",
+                    mypath + "/Randomized_MC_Assets/Minecraft " + mc_ver + " Randomized Textures/assets",
                     ignore=ignore_files)
-    print("HOW FAR??")
-    shutil.copy(mypath + "Copyables/pack.png",
-                mypath + "Randomized_MC_Assets/Minecraft " + mc_ver + " Randomized Textures")
-    print("HOW FAR??")
-    shutil.copy(mypath + "Copyables/end.txt",
-                mypath + "Randomized_MC_Assets/Minecraft " + mc_ver +
+
+    shutil.copy(mypath + "/Copyables/pack.png",
+                mypath + "/Randomized_MC_Assets/Minecraft " + mc_ver + " Randomized Textures")
+
+    shutil.copy(mypath + "/Copyables/end.txt",
+                mypath + "/Randomized_MC_Assets/Minecraft " + mc_ver +
                 " Randomized Textures/assets/minecraft/texts")
 
-    shutil.copy(mypath + "Copyables/splashes.txt",
-                mypath + "Randomized_MC_Assets/Minecraft " + mc_ver +
+    shutil.copy(mypath + "/Copyables/splashes.txt",
+                mypath + "/Randomized_MC_Assets/Minecraft " + mc_ver +
                 " Randomized Textures/assets/minecraft/texts")
 
-    mcmeta = open(mypath + "Randomized_MC_Assets/Minecraft " + mc_ver + " Randomized Textures/pack.mcmeta", "a")
+    mcmeta = open(mypath + "/Randomized_MC_Assets/Minecraft " + mc_ver + " Randomized Textures/pack.mcmeta", "a")
 
     mcmeta.write("{\n \"pack\": {\n   \"pack_format\": " + vers_to_mcmeta[mc_ver] + ",\n   "
                  "\"description\": \"Minecraft textures randomized by Izokia and CosmicShiny\"\n }\n}")
@@ -150,7 +149,7 @@ def randomize(mc_ver, ignored_textures, ignored_music, ignored_sounds, bypass):
     logfile = open(mypath + "/Randomized_MC_Assets/Minecraft " + mc_ver + " Randomized Textures/log.txt", "a")
     logfile.write("Format: (File_name) is (File_image)\n\n")
     logfile.close()
-
+    print("CP 3")
     print("\nRandomizing textures\n")
     texture_randomzier = Randomizer(
         mypath + "/assets",
@@ -159,10 +158,9 @@ def randomize(mc_ver, ignored_textures, ignored_music, ignored_sounds, bypass):
         grab_files(mypath + "/assets/minecraft/textures", ignored_textures),
         grab_files(mypath + "/assets/minecraft/textures", ignored_textures)
     )
-    print("Expected crash Point")
     texture_randomzier.get_all_files()
     texture_randomzier.randomized_list()
-    print("starting 3 ")
+    print("CP 4")
     texture_randomzier.rename_and_move(mc_ver)
     print("\nTextures have finished randomizing\n")
 
