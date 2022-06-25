@@ -29,7 +29,7 @@ usingPython = True
 if usingPython:
     mypath = os.path.dirname(os.path.abspath(__file__))
 else:
-    myPath = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    mypath = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # print(mypath)
@@ -50,7 +50,8 @@ def grab_files(startdir, ignorelist):
 
 # preps zip file then deletes source, and sets download timer
 
-
+print(grab_files(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), []))
+print(os.path.dirname(os.path.abspath(__file__)), [])
 def zip_files(destination, source):
     shutil.make_archive(destination + "/Randomized_MC_Assets", 'zip', source)  # creates zip
     shutil.rmtree(source)  # removes the Randomized MC folder
