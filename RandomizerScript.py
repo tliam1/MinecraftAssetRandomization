@@ -35,16 +35,6 @@ class Randomizer:
         # print("Randomized List\t", self.randomized_directory_and_files)
         # print("Unrandomized List\t", self.directory_and_files)
 
-    def grab_files(self, startdir, ignorelist):
-        ballslist = []
-
-        for root, directories, files in os.walk(startdir, topdown=True):
-            directories[:] = [d for d in directories if d not in ignorelist]
-            files[:] = [f for f in files if f not in ignorelist and not f.endswith(".mcmeta")]
-            ballslist.append([root, files[:]])
-
-        return ballslist
-
     def get_all_files(self):
         for x in self.directory_and_files:
             for y in x[1]:
@@ -88,14 +78,14 @@ class Randomizer:
                 print(fullpath)
                 # shutil.copy(fullpath, mypath + "/Temp")
                 print(shutil.copy(fullpath, mypath + "/Temp"))
-                print(self.grab_files(mypath + "/Temp", []))
+                print(os.listdir(mypath+"/Temp"))
                 print("CP5")
-                # if os.path.exists(mypath + "/Temp"):
-                #     print("Temp file exists here!")
-                # if os.path.exists(directory):
-                #     print("directory exists")
-                # if os.path.exists(fullpath):
-                #     print("full path exists")
+                if os.path.exists(mypath + "/Temp"):
+                    print("Temp file exists here!")
+                if os.path.exists(directory):
+                    print("directory exists")
+                if os.path.exists(fullpath):
+                    print("full path exists")
                 if os.path.exists(mypath + "/Temp/" + file):
                     print("File Exists in Temp folder")
                 os.rename(mypath + "/Temp/" + file, os.path.join(mypath + "/Temp/", rand_file_list[iteration]))
