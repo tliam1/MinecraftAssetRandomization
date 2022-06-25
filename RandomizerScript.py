@@ -49,9 +49,9 @@ class Randomizer:
                     temp_index = self.directory_and_files[iterations][1].index(y)
 
                     directory = directory.replace("assets",
-                                                  "Randomized_MC_Assets\\Minecraft "
+                                                  "Randomized_MC_Assets/Minecraft "
                                                   + mc_ver +
-                                                  " Randomized Textures\\assets")
+                                                  " Randomized Textures/assets")
                     del self.directory_and_files[iterations][1][temp_index]
                     return directory
             iterations += 1
@@ -100,6 +100,7 @@ class Randomizer:
                 print("CP5.5f")
                 new_directory = self.find_dir(rand_file_list[iteration], mc_ver)
                 print("CP6")
+                print(new_directory)
                 shutil.move(mypath + "/Temp/" + rand_file_list[iteration], new_directory)
                 print("CP7")
                 logfile.write(rand_file_list[iteration] + " is " + file + "\n")
