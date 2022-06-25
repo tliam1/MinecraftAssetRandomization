@@ -83,9 +83,7 @@ class Randomizer:
                 # shutil.copy(fullpath, mypath + "/Temp")
 
                 # I actually need this as the empty folder doesn't exist on web
-                if os.path.exists(mypath + "/Temp"):
-                    print("Temp file exists here!")
-                else:
+                if not os.path.exists(mypath + "/Temp"):
                     os.makedirs(mypath + "/Temp")
 
                 shutil.copy(fullpath, mypath + "/Temp/")
