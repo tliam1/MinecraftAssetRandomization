@@ -82,7 +82,8 @@ class Randomizer:
                 fullpath = (directory + "/" + file)
                 print(fullpath)
                 # shutil.copy(fullpath, mypath + "/Temp")
-                print(shutil.copy(fullpath, mypath + "/Temp"))
+                print("CP 4.5")
+                print(shutil.copy(fullpath, mypath + "/Temp/"))
                 print(os.listdir(mypath+"/Temp/"))
                 print("CP5")
                 if os.path.exists(mypath + "/Temp"):
