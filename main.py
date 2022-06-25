@@ -103,12 +103,11 @@ def try_create():  # if someone is in the process of downloading, wait
 
 def randomize(mc_ver, ignored_textures, ignored_music, ignored_sounds, bypass):
     print(mypath)
+    if not bypass:
+        halt_download()
     if not can_download():
         print("we cannot download rn")
         return
-
-    if not bypass:
-        halt_download()
 
     if not try_download():
         print("NO EXE EXISTS SO WE WILL WAIT FOR A RANDOMIZATION PROCESS")
