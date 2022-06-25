@@ -24,8 +24,9 @@ ignored_music_default = ["ambient", "block", "damage", "dig", "enchant", "entity
                          "liquid", "minecart", "mob", "note", "portal", "random", "step", "tile", "ui"]
 
 ignored_sounds_default = ["music", "records"]
-usingPython = False
 
+
+usingPython = False
 if usingPython:
     mypath = os.path.dirname(os.path.abspath(__file__))
 else:
@@ -78,7 +79,6 @@ def halt_download():
 
 def try_download():  # if someone is in the process of downloading, wait
     try:
-        print("try Download Ran")
         if exists(mypath + "/static/zipFiles/Randomized_MC_Assets.zip"):
             os.remove(mypath + "/static/zipFiles/Randomized_MC_Assets.zip")  # removes zip from folder
     except PermissionError:
@@ -88,7 +88,6 @@ def try_download():  # if someone is in the process of downloading, wait
 
 def try_create():  # if someone is in the process of downloading, wait
     try:
-        print("tryCreate")
         os.makedirs("Randomized_MC_Assets")
     except FileExistsError:
         return False
@@ -119,11 +118,9 @@ def randomize(mc_ver, ignored_textures, ignored_music, ignored_sounds, bypass):
         print("got stuck & process is broken")
         return
 
-    print("Starting Prep")
-    os.makedirs("Minecraft " + mc_ver + " Randomized Textures")
-    print("Made randomized texture dir")
+    os.makedirs(mypath+"/Randomized_MC_Assets/"+"Minecraft " + mc_ver + " Randomized Textures")
     # os.makedirs("Randomized_MC_Assets")
-    shutil.move(mypath + "/Minecraft " + mc_ver + " Randomized Textures", mypath + "/Randomized_MC_Assets")
+    # shutil.move(mypath + "/Minecraft " + mc_ver + " Randomized Textures", mypath + "/Randomized_MC_Assets")
     print("Tried moving minecraft folder into randomized textures folder")
 
     def ignore_files(directory, files):
