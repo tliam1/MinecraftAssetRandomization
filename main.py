@@ -118,7 +118,7 @@ def randomize(mc_ver, ignored_textures, ignored_music, ignored_sounds, bypass):
         print("got stuck & process is broken")
         return
 
-    os.makedirs("Randomized_MC_Assets/"+"Minecraft " + mc_ver + " Randomized Textures", "w")
+    os.makedirs("Randomized_MC_Assets/"+"Minecraft " + mc_ver + " Randomized Textures")
     # os.makedirs("Randomized_MC_Assets")
     # shutil.move(mypath + "/Minecraft " + mc_ver + " Randomized Textures", mypath + "/Randomized_MC_Assets")
     print("Tried moving minecraft folder into randomized textures folder")
