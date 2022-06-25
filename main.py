@@ -152,9 +152,13 @@ def randomize(mc_ver, ignored_textures, ignored_music, ignored_sounds, bypass):
         grab_files(mypath + "/assets/minecraft/textures", ignored_textures),
         grab_files(mypath + "/assets/minecraft/textures", ignored_textures)
     )
+    print("starting 1 ")
     texture_randomzier.get_all_files()
+    print("starting 2 ")
     texture_randomzier.randomized_list()
+    print("starting 3 ")
     texture_randomzier.rename_and_move(mc_ver)
+    print("starting 4 ")
     print("\nTextures have finished randomizing\n")
 
     # print("\nRandomizing music\n")
