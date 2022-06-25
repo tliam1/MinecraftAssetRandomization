@@ -24,12 +24,12 @@ ignored_music_default = ["ambient", "block", "damage", "dig", "enchant", "entity
                          "liquid", "minecart", "mob", "note", "portal", "random", "step", "tile", "ui"]
 
 ignored_sounds_default = ["music", "records"]
-usingPython = True
+usingPython = False
 
 if usingPython:
     mypath = os.path.dirname(os.path.abspath(__file__))
 else:
-    mypath = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    mypath = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + "app"
 
 
 # print(mypath)
@@ -50,7 +50,6 @@ def grab_files(startdir, ignorelist):
 
 # preps zip file then deletes source, and sets download timer
 
-print(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))+"app/")
 def zip_files(destination, source):
     shutil.make_archive(destination + "/Randomized_MC_Assets", 'zip', source)  # creates zip
     shutil.rmtree(source)  # removes the Randomized MC folder
