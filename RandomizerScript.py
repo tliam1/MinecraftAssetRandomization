@@ -53,7 +53,7 @@ class Randomizer:
                                                   + mc_ver +
                                                   " Randomized Textures\\assets")
                     del self.directory_and_files[iterations][1][temp_index]
-                    return directory + "\\" + rand_file
+                    return directory
             iterations += 1
 
     def get_rand_file_list(self):
