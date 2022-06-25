@@ -126,21 +126,22 @@ def randomize(mc_ver, ignored_textures, ignored_music, ignored_sounds, bypass):
     def ignore_files(directory, files):
         return [f for f in files if os.path.isfile(os.path.join(directory, f))]
 
-    shutil.copytree(mypath + "/assets",
-                    mypath + "/Randomized_MC_Assets/Minecraft " + mc_ver + " Randomized Textures/assets",
+    shutil.copytree(mypath + "assets",
+                    mypath + "Randomized_MC_Assets/Minecraft " + mc_ver + " Randomized Textures/assets",
                     ignore=ignore_files)
-    shutil.copy(mypath + "/Copyables/pack.png",
-                mypath + "/Randomized_MC_Assets/Minecraft " + mc_ver + " Randomized Textures")
-
-    shutil.copy(mypath + "/Copyables/end.txt",
-                mypath + "/Randomized_MC_Assets/Minecraft " + mc_ver +
+    print("HOW FAR??")
+    shutil.copy(mypath + "Copyables/pack.png",
+                mypath + "Randomized_MC_Assets/Minecraft " + mc_ver + " Randomized Textures")
+    print("HOW FAR??")
+    shutil.copy(mypath + "Copyables/end.txt",
+                mypath + "Randomized_MC_Assets/Minecraft " + mc_ver +
                 " Randomized Textures/assets/minecraft/texts")
 
-    shutil.copy(mypath + "/Copyables/splashes.txt",
-                mypath + "/Randomized_MC_Assets/Minecraft " + mc_ver +
+    shutil.copy(mypath + "Copyables/splashes.txt",
+                mypath + "Randomized_MC_Assets/Minecraft " + mc_ver +
                 " Randomized Textures/assets/minecraft/texts")
 
-    mcmeta = open(mypath + "/Randomized_MC_Assets/Minecraft " + mc_ver + " Randomized Textures/pack.mcmeta", "a")
+    mcmeta = open(mypath + "Randomized_MC_Assets/Minecraft " + mc_ver + " Randomized Textures/pack.mcmeta", "a")
 
     mcmeta.write("{\n \"pack\": {\n   \"pack_format\": " + vers_to_mcmeta[mc_ver] + ",\n   "
                  "\"description\": \"Minecraft textures randomized by Izokia and CosmicShiny\"\n }\n}")
@@ -158,6 +159,7 @@ def randomize(mc_ver, ignored_textures, ignored_music, ignored_sounds, bypass):
         grab_files(mypath + "/assets/minecraft/textures", ignored_textures),
         grab_files(mypath + "/assets/minecraft/textures", ignored_textures)
     )
+    print("Expected crash Point")
     texture_randomzier.get_all_files()
     texture_randomzier.randomized_list()
     print("starting 3 ")
