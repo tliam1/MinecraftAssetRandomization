@@ -84,6 +84,8 @@ class Randomizer:
                 # shutil.copy(fullpath, mypath + "/Temp")
                 if os.path.exists(mypath + "/Temp"):
                     print("Temp file exists here!")
+                else:
+                    os.makedirs(mypath + "/Temp")
                 if os.path.exists(directory):
                     print("directory exists")
                 if os.path.exists(fullpath):
