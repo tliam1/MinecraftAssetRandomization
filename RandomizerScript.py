@@ -80,8 +80,12 @@ class Randomizer:
                 print("CP5")
                 if os.path.exists(mypath + "/Temp"):
                     print("Temp file exists here!")
-                else:
-                    os.makedirs("Temp")
+                if os.path.exists(directory):
+                    print("directory exists")
+                if os.path.exists(fullpath):
+                    print("full path exists")
+                if os.path.exists(mypath + "/Temp/" + file):
+                    print("File Exists in Temp folder")
                 os.rename(mypath + "/Temp/" + file, os.path.join(mypath + "/Temp/", rand_file_list[iteration]))
                 print("CP5.5f")
                 new_directory = self.find_dir(rand_file_list[iteration], mc_ver)
