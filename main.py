@@ -84,6 +84,8 @@ def try_download():  # if someone is in the process of downloading, wait
         if exists(mypath + "/static/zipFiles/Randomized_MC_Assets.zip"):
             os.remove(mypath + "/static/zipFiles/Randomized_MC_Assets.zip")  # removes zip from folder
             print("deleted old zip")
+        else:
+            print(".zip file dont exists")
     except PermissionError:
         if exists(mypath + "/static/zipFiles"):
             print("zip files folder exists")
@@ -102,19 +104,18 @@ def try_create():  # if someone is in the process of downloading, wait
 
 
 def randomize(mc_ver, ignored_textures, ignored_music, ignored_sounds, bypass):
-    print(mypath)
-    if not bypass:
+    if bypass:
         halt_download()
     if not can_download():
         print("we cannot download rn")
         return
 
+    list_of_globals = globals()
+    list_of_globals["can_randomize"] = False
+
     if not try_download():
         print("NO EXE EXISTS SO WE WILL WAIT FOR A RANDOMIZATION PROCESS")
         return
-
-    list_of_globals = globals()
-    list_of_globals["can_randomize"] = False
     # if not try_download():  # if removing the zip folder causes a permissions error...wait
     #     return
     # if not try_create(mc_ver):
