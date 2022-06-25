@@ -67,7 +67,12 @@ class Randomizer:
     def rename_and_move(self, mc_ver):
         rand_file_list = self.get_rand_file_list()
         iteration = 0
-        mypath = os.path.dirname(os.path.realpath(__file__))
+        using_python = False
+        if using_python:
+            mypath = os.path.dirname(os.path.realpath(__file__))
+        else:
+            mypath = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + "app"
+
         logfile = open(mypath + "/Randomized_MC_Assets/Minecraft " + mc_ver + " Randomized Textures/log.txt", "a")
         for x in self.same_list:
             for y in x[1]:

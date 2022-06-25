@@ -24,9 +24,9 @@ ignored_music_default = ["ambient", "block", "damage", "dig", "enchant", "entity
                          "liquid", "minecart", "mob", "note", "portal", "random", "step", "tile", "ui"]
 
 ignored_sounds_default = ["music", "records"]
-usingPython = False
+using_python = False
 
-if usingPython:
+if using_python:
     mypath = os.path.dirname(os.path.abspath(__file__))
 else:
     mypath = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + "app"
