@@ -74,12 +74,13 @@ class Randomizer:
                 file = y
                 directory = x[0]
                 fullpath = (directory + "/" + file)
-
                 shutil.copy(fullpath, mypath + "/Temp")
+                print("CP5")
                 os.rename(mypath + "/Temp/" + file, mypath + "/Temp/" + rand_file_list[iteration])
                 new_directory = self.find_dir(rand_file_list[iteration], mc_ver)
+                print("CP6")
                 shutil.move(mypath + "/Temp/" + rand_file_list[iteration], new_directory)
-
+                print("CP7")
                 logfile.write(rand_file_list[iteration] + " is " + file + "\n")
 
                 iteration += 1
