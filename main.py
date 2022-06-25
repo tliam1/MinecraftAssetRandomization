@@ -76,6 +76,7 @@ def halt_download():
     current_time = time.time()  # sets current time
     while abs(current_time - time.time()) < 5:  # this is the time before auto removes download (5 sec)
         # we just need the download to basically start then we are good
+        print("WAITING TIME")
         # 5 seconds for good measure
         continue
     return True
@@ -104,7 +105,6 @@ def try_create():  # if someone is in the process of downloading, wait
 
 
 def randomize(mc_ver, ignored_textures, ignored_music, ignored_sounds, bypass):
-
     if not bypass:
         halt_download()
     if not can_download():
