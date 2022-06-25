@@ -78,6 +78,7 @@ def halt_download():
 
 def try_download():  # if someone is in the process of downloading, wait
     try:
+        print("try Download Ran")
         if exists(mypath + "/static/zipFiles/Randomized_MC_Assets.zip"):
             os.remove(mypath + "/static/zipFiles/Randomized_MC_Assets.zip")  # removes zip from folder
     except PermissionError:
@@ -87,6 +88,7 @@ def try_download():  # if someone is in the process of downloading, wait
 
 def try_create():  # if someone is in the process of downloading, wait
     try:
+        print("tryCreate")
         os.makedirs("Randomized_MC_Assets")
     except FileExistsError:
         return False
@@ -116,9 +118,13 @@ def randomize(mc_ver, ignored_textures, ignored_music, ignored_sounds, bypass):
     if not try_create():
         print("got stuck & process is broken")
         return
+
+    print("Starting Prep")
     os.makedirs("Minecraft " + mc_ver + " Randomized Textures")
+    print("Made randomized texture dir")
     # os.makedirs("Randomized_MC_Assets")
     shutil.move(mypath + "/Minecraft " + mc_ver + " Randomized Textures", mypath + "/Randomized_MC_Assets")
+    print("Tried moving minecraft folder into randomized textures folder")
 
     def ignore_files(directory, files):
         return [f for f in files if os.path.isfile(os.path.join(directory, f))]
@@ -126,7 +132,7 @@ def randomize(mc_ver, ignored_textures, ignored_music, ignored_sounds, bypass):
     shutil.copytree(mypath + "/assets",
                     mypath + "/Randomized_MC_Assets/Minecraft " + mc_ver + " Randomized Textures/assets",
                     ignore=ignore_files)
-
+    print("Tried shutli.copytree")
     shutil.copy(mypath + "/Copyables/pack.png",
                 mypath + "/Randomized_MC_Assets/Minecraft " + mc_ver + " Randomized Textures")
 
