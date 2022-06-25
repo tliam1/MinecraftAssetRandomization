@@ -102,6 +102,7 @@ def try_create():  # if someone is in the process of downloading, wait
 
 
 def randomize(mc_ver, ignored_textures, ignored_music, ignored_sounds, bypass):
+
     if not bypass:
         halt_download()
     if not can_download():
