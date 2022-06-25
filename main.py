@@ -67,7 +67,9 @@ def zip_files(destination, source):
 
 
 def can_download():
-    return can_randomize
+    list_of_globals = globals()
+    print("Can Randomize: ", list_of_globals["can_randomize"])
+    return list_of_globals["can_randomize"]
 
 
 def halt_download():

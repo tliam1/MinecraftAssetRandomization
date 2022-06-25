@@ -47,7 +47,7 @@ def background_process_randomize(Ver_Name):
             print("WOEHGWLBGIWHBYGLHWHYHWTHWIYGJ:WOIYJWOKLYJWO")
             client_thread = threading.Thread(target=randomize, args=(str(Ver_Name), ignored_textures_default, ignored_music_default, ignored_sounds_default, False,))
             client_thread.start()
-            client_thread.join()  # join waits till thread ends before continuing
+            # client_thread.join()  # join waits till thread ends before continuing
         while not exists(mypath + "/static/zipFiles/Randomized_MC_Assets.zip"):  # if removing the zip folder causes a permissions error...wait
             continue
         # randomize(str(Ver_Name), ignored_textures_default, ignored_music_default, ignored_sounds_default, False)
