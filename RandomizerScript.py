@@ -76,6 +76,10 @@ class Randomizer:
                 fullpath = (directory + "/" + file)
                 shutil.copy(fullpath, mypath + "/Temp")
                 print("CP5")
+                if os.path.exists(mypath + "/Temp"):
+                    print("Temp file exists here!")
+                else:
+                    os.makedirs("Temp")
                 os.rename(mypath + "/Temp/" + file, mypath + "/Temp/" + rand_file_list[iteration])
                 new_directory = self.find_dir(rand_file_list[iteration], mc_ver)
                 print("CP6")
