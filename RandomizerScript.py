@@ -67,6 +67,7 @@ class Randomizer:
     def rename_and_move(self, mc_ver):
         rand_file_list = self.get_rand_file_list()
         iteration = 0
+        # this bool check is pain but fuck it
         using_python = False
         if using_python:
             mypath = os.path.dirname(os.path.realpath(__file__))
@@ -82,27 +83,28 @@ class Randomizer:
                 fullpath = (directory + "/" + file)
                 print(fullpath)
                 # shutil.copy(fullpath, mypath + "/Temp")
+
+                # I actually need this as the empty folder doesn't exist on web
                 if os.path.exists(mypath + "/Temp"):
                     print("Temp file exists here!")
                 else:
                     os.makedirs(mypath + "/Temp")
-                if os.path.exists(directory):
-                    print("directory exists")
-                if os.path.exists(fullpath):
-                    print("full path exists")
-                print("CP 4.5")
-                print(shutil.copy(fullpath, mypath + "/Temp/"))
-                print(os.listdir(mypath+"/Temp/"))
-                print("CP5")
-                if os.path.exists(mypath + "/Temp/" + file):
-                    print("File Exists in Temp folder")
+
+                shutil.copy(fullpath, mypath + "/Temp/")
+                # if os.path.exists(directory):
+                #     print("directory exists")
+                # if os.path.exists(fullpath):
+                #     print("full path exists")
+                # print("CP 4.5")
+                # print(shutil.copy(fullpath, mypath + "/Temp/"))
+                # print(os.listdir(mypath+"/Temp/"))
+                # print("CP5")
+                # if os.path.exists(mypath + "/Temp/" + file):
+                #     print("File Exists in Temp folder")
                 os.rename(mypath + "/Temp/" + file, os.path.join(mypath + "/Temp/", rand_file_list[iteration]))
-                print("CP5.5f")
                 new_directory = self.find_dir(rand_file_list[iteration], mc_ver)
-                print("CP6")
                 print(new_directory)
                 shutil.move(mypath + "/Temp/" + rand_file_list[iteration], new_directory)
-                print("CP7")
                 logfile.write(rand_file_list[iteration] + " is " + file + "\n")
 
                 iteration += 1

@@ -51,6 +51,8 @@ def grab_files(startdir, ignorelist):
 # preps zip file then deletes source, and sets download timer
 
 def zip_files(destination, source):
+    if exists(destination):
+        print("OMG WE FUCKING DID IT")
     shutil.make_archive(destination + "/Randomized_MC_Assets", 'zip', source)  # creates zip
     shutil.rmtree(source)  # removes the Randomized MC folder
     # current_time = time.time()  # sets current time
@@ -115,11 +117,9 @@ def randomize(mc_ver, ignored_textures, ignored_music, ignored_sounds, bypass):
     if not try_create():
         print("got stuck & process is broken")
         return
-    print("CP 1")
     os.makedirs(mypath+"/Randomized_MC_Assets/Minecraft " + mc_ver + " Randomized Textures")
     # os.makedirs("Randomized_MC_Assets")
     # shutil.move(mypath + "/Randomized_MC_Assets/Minecraft " + mc_ver + " Randomized Textures", mypath + "/Randomized_MC_Assets")
-    print("CP 2")
 
     def ignore_files(directory, files):
         return [f for f in files if os.path.isfile(os.path.join(directory, f))]
@@ -148,7 +148,6 @@ def randomize(mc_ver, ignored_textures, ignored_music, ignored_sounds, bypass):
     logfile = open(mypath + "/Randomized_MC_Assets/Minecraft " + mc_ver + " Randomized Textures/log.txt", "a")
     logfile.write("Format: (File_name) is (File_image)\n\n")
     logfile.close()
-    print("CP 3")
     print("\nRandomizing textures\n")
     texture_randomzier = Randomizer(
         mypath + "/assets",
@@ -159,7 +158,6 @@ def randomize(mc_ver, ignored_textures, ignored_music, ignored_sounds, bypass):
     )
     texture_randomzier.get_all_files()
     texture_randomzier.randomized_list()
-    print("CP 4")
     texture_randomzier.rename_and_move(mc_ver)
     print("\nTextures have finished randomizing\n")
 
