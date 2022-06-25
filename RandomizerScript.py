@@ -79,9 +79,7 @@ class Randomizer:
             for y in x[1]:
                 file = y
                 directory = x[0]
-                print(directory)
                 fullpath = (directory + "/" + file)
-                print(fullpath)
                 # shutil.copy(fullpath, mypath + "/Temp")
 
                 # I actually need this as the empty folder doesn't exist on web
@@ -103,7 +101,6 @@ class Randomizer:
                 #     print("File Exists in Temp folder")
                 os.rename(mypath + "/Temp/" + file, os.path.join(mypath + "/Temp/", rand_file_list[iteration]))
                 new_directory = self.find_dir(rand_file_list[iteration], mc_ver)
-                print(new_directory)
                 shutil.move(mypath + "/Temp/" + rand_file_list[iteration], new_directory)
                 logfile.write(rand_file_list[iteration] + " is " + file + "\n")
 

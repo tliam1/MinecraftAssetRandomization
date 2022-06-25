@@ -53,6 +53,8 @@ def grab_files(startdir, ignorelist):
 def zip_files(destination, source):
     if exists(destination):
         print("OMG WE FUCKING DID IT")
+    else:
+        print("destination doesnt exist here\n" + destination)
     shutil.make_archive(destination + "/Randomized_MC_Assets", 'zip', source)  # creates zip
     shutil.rmtree(source)  # removes the Randomized MC folder
     # current_time = time.time()  # sets current time
