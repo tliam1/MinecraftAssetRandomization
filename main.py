@@ -200,6 +200,6 @@ def randomize(mc_ver, ignored_textures, ignored_music, ignored_sounds, bypass):
     if not bypass:
         zip_files(mypath + "/static/zipFiles", mypath + "/Randomized_MC_Assets")
 
-
+# for website
 # run this once to start the program
 # randomize("1.19", ignored_textures_default, ignored_music_default, ignored_sounds_default, True)
