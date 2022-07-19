@@ -44,9 +44,9 @@ class Randomizer:
         iterations = 0
         for x in self.directory_and_files:
             directory = x[0]
-            for y in x[1]:
-                if rand_file == y:
-                    temp_index = self.directory_and_files[iterations][1].index(y)
+            try:
+                if self.directory_and_files[iterations][1].index(rand_file) != devnull:
+                    temp_index = self.directory_and_files[iterations][1].index(rand_file)
 
                     directory = directory.replace("assets",
                                                   "Randomized_MC_Assets/Minecraft "
@@ -54,6 +54,20 @@ class Randomizer:
                                                   " Randomized Textures/assets")
                     del self.directory_and_files[iterations][1][temp_index]
                     return directory
+            except ValueError:
+                pass
+                # print("Nothing here")
+            #
+            # for y in x[1]:
+            #     if rand_file == y:
+            #         temp_index = self.directory_and_files[iterations][1].index(y)
+            #
+            #         directory = directory.replace("assets",
+            #                                       "Randomized_MC_Assets/Minecraft "
+            #                                       + mc_ver +
+            #                                       " Randomized Textures/assets")
+            #         del self.directory_and_files[iterations][1][temp_index]
+            #         return directory
             iterations += 1
 
     def get_rand_file_list(self):
