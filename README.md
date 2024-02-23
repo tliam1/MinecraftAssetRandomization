@@ -1,2 +1,2 @@
 # MinecraftAssetRandomization
-A program to randomize the assets folder
+A program to randomize a Minecraft asset folder. Minecraft uses file names and directory locations to apply textures. Therefore, if a sheep's texture were to be renamed to 'cow' and put into the cow's texture folder, the game would apply the sheep's texture (assuming the original cow texture has been moved to maintain the original structure of the folder). So, this project copies files from a stable Minecraft asset folder, renames them, and directs them to a new, randomized folder.
